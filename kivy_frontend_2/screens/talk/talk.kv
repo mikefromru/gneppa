@@ -1,0 +1,83 @@
+<TalkScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            height: dp(70)
+            icon_size: dp(14)
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_color
+                on_release: root.manager.current = 'home_screen'
+
+            MDLabel:
+                id: tablo
+                padding_x: dp(15)
+                halign: 'right'
+                font_name: 'OpenSans'
+                font_size: '18sp'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.primary_color
+                bold: True
+
+        MDFloatLayout:
+            orientation: 'vertical'
+            MDLabel:
+                text: 'Answer this question'
+                font_name: 'OpenSans'
+                font_size: '16sp'
+                padding_x: dp(15)
+                pos_hint: {'y': .4}
+                bold: True
+
+            MDLabel:
+                text: 'Please, try to talk as much as posible'
+                font_name: 'OpenSans'
+                italic: True
+                padding_x: dp(15)
+                pos_hint: {'y': 0.33}
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+
+            MDIconButton:
+                id: play_button
+                icon: 'play-circle'
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_light
+                icon_size: dp(45)
+                pos_hint: {'center_x': .0, 'center_y': .5}
+                on_release: root.play()
+                ripple_scale: 0
+
+            MDLabel:
+                id: name
+                font_name: 'fonts/OpenSans/OpenSans-Medium.ttf'
+                font_size: '18sp'
+
+        MDFloatLayout:
+            orientation: 'vertical'
+
+            MDTextButton:
+                id: timer
+                text: '00:00'
+                font_name: 'fonts/OpenSans/OpenSans-Bold.ttf'
+                font_size: '35sp'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.primary_color
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_release: root.make_pause()
+                opacity: 0
+ 
+            MDTextButton:
+                id: next_btn
+                text: 'next'
+                font_name: 'OpenSans'
+                pos_hint: {'center_x': .5, 'center_y': .2}
+                opacity: 0
+                disabled: True
+                on_release: root.next_button()

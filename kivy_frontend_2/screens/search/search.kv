@@ -1,0 +1,112 @@
+<MyContainerSearch>
+    id: my_container_search
+    size_hint_x: None
+    size_hint_y: None
+    divider: 'Full'
+    divider_color: 'red'
+    orientation: 'vertical'
+    padding: (dp(10), dp(0), dp(0), dp(0))
+    orientation: 'horizontal'
+
+    MDBoxLayout:
+        orientation: 'horizontal'
+        size_hint_x: .2
+        canvas.before:
+            Color:
+                rgba: app.theme_cls.primary_color
+            RoundedRectangle:
+                size: (dp(42), dp(42))
+                pos : self.center_x - self.width/2.1 , self.center_y - self.height/2.5
+                radius: [dp(12),]
+
+        MDIcon:
+            icon: root.icon
+            theme_text_color: 'Custom'
+            text_color: app.theme_cls.primary_light
+            font_size: '25sp'
+            padding_x: dp(10)
+            pos_hint: {'center_y': .5}
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: (dp(0), dp(10), dp(0), dp(10))
+
+        MDLabel:
+            text: f'{root.name}'
+            font_name: 'fonts/OpenSans/OpenSans-Medium.ttf'
+            font_size: '15sp'
+            markup: True
+
+        MDProgressBar:
+            orientation: 'horizontal'
+            size_hint_x: .1
+            size_hint_y: .1
+            radius: 3 
+            value: root.progress_value
+            height: 3 
+            opacity: root.progress_value_opacity
+
+    MDIcon:
+        id: my_star
+        icon: root.star
+        font_size: '12sp'
+        theme_text_color: 'Custom'
+        text_color: app.theme_cls.primary_light
+        pos_hint: {'center_x': .1, 'center_y': .5}
+        opacity: 0
+
+    MDIconButton:
+        icon: 'dots-vertical'
+        icon_size: dp(15)
+        theme_icon_color: 'Hint'
+        pos_hint: {'center_y': .5, 'center_x': .7}
+        on_release: root.get_vocabulary()
+
+<SearchScreen>
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientaiton: 'horizontal'
+            size_hint_y: None
+            height: dp(70)
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {'center_y': .5}
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_color
+                on_release:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'home_screen'
+
+            MDTextField:
+                id: name
+                hint_text: 'Search'
+                font_name: 'OpenSans'
+                font_size: '16sp'
+                on_focus: True
+
+            MDIconButton:
+                icon: 'magnify'
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_color
+                pos_hint: {'center_y': .5}
+                on_release:
+                    root.callback(self)
+
+        RecycleView:
+            id: search_rv
+            viewclass: 'MyContainerSearch'
+            effect_cls: 'ScrollEffect'
+            do_scroll_x: False
+            do_scroll_y: True
+            RecycleBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                spacing: dp(0)
+                default_size_hint: 1, None
+                height: self.minimum_height
+                default_size: None, dp(55)
+                padding: dp(0) 

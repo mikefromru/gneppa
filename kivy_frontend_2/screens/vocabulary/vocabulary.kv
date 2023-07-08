@@ -1,0 +1,36 @@
+<VocabularyScreen>
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            size_hint_y: None
+            orientation: 'horizontal'
+            height: dp(60)
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {'center_y': .5}
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_color
+                on_release: 
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'home_screen'
+
+            MDLabel:
+                text: 'Vocabulary'
+                font_name: 'OpenSans'
+                font_size: '16sp'
+                bold: True
+        
+        ScrollView:
+            effect_cls: 'ScrollEffect'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: (dp(0),dp(10),dp(0),dp(0))
+                
+                MDList:
+                    id: box

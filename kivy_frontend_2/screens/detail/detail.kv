@@ -1,0 +1,70 @@
+<DetailScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            #md_bg_color: rgba('#F7F8FC')
+            height:  dp(70)
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {'center_y': .5}
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_color
+                on_release: 
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'home_screen'
+            MDLabel:
+                id: title
+                font_name: 'OpenSans'
+                font_size: '16sp'
+                bold: True
+
+
+            MDIconButton:
+                id: star
+                icon: 'star'
+                theme_icon_color: 'Custom'
+                pos_hint: {'center_y': .5}
+                on_release: root.set_star()
+                opacity: 0
+
+        ScrollView:
+            id: my_scroll
+            effect_cls: 'ScrollEffect'
+            adaptive_height: True
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    id: question_lbl
+                    opacity: 0
+                    size_hint_y: None
+                    text: "Today's questions:"
+                    size: self.texture_size
+                    padding_y: dp(10)
+                    padding_x: dp(10)
+                    font_name: 'fonts/OpenSans/OpenSans-Medium'
+                    font_size: '16sp'
+
+                MDList:
+                    padding: (dp(5), dp(0), dp(5), dp(10))
+                    id: box
+                    spacing: dp(5)
+                    height: self.minimum_height
+
+                MDRaisedButton:
+                    size_hint: .5, None
+                    id: start_btn 
+                    font_name: 'fonts/OpenSans/OpenSans-SemiBold'
+                    font_size: '18sp'
+
+                    opacity: 0
+                    text: 'Start'
+                    pos_hint: {"center_x": .5 }
+                    on_release: root.manager.current = 'talk_screen'

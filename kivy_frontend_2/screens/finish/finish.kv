@@ -1,0 +1,54 @@
+<FinishScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDFloatLayout:
+            orientation: 'vertical'
+
+            MDLabel:
+                text: 'Gneppa'
+                halign: 'center'
+                font_name: 'OpenSans'
+                font_size: '26sp'
+                pos_hint: {'center_x': .5, 'center_y': .5}
+
+            MDLabel:
+                text: 'Practice makes perfect'
+                halign: 'center'
+                font_name: 'fonts/OpenSans/OpenSans-Light.ttf'
+                font_size: '18sp'
+                theme_text_color: 'Secondary'
+                pos_hint: {'center_x': .5, 'center_y': .4}
+
+        MDFloatLayout:
+
+            MDIcon:
+                icon: 'seal'
+                font_size: '200sp'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.primary_color
+                pos_hint: {'center_x': .5, 'center_y': .6}
+
+            MDLabel:
+                text: 'Keep it up!'
+                halign: 'center'
+                pos_hint: {'center_x': .5, 'center_y': .2}
+                font_name: 'OpenSans'
+                font_size: '25sp'
+                bold: True
+
+            MDLabel:
+                text: 'Your points ' + str(root.points)
+                halign: 'center'
+                theme_text_color: 'Secondary'
+                font_size: '13sp'
+                pos_hint: {'center_x': .5, 'center_y': .1}
+
+        MDFloatLayout:
+            MDFillRoundFlatButton:
+                size_hint_x: .5
+                text: 'Go home'
+                font_name: 'fonts/OpenSans/OpenSans-SemiBold'
+                font_size: '18sp'
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_release: root.manager.current = 'home_screen'

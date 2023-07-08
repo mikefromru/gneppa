@@ -1,0 +1,48 @@
+/* div.card.col-12.col-sm-6 {
+  margin-bottom: 2px !important;
+}
+ */
+a {
+  text-decoration: none;
+}
+.levels {
+  padding-left: 15px;
+}
+.image-levels {
+  /* width: 5px !important; */
+  /* height: 10px !important; */
+}
+.center-div {
+  margin-top: 100px !important;
+}
+.btn-download {
+  background: #2196f3;
+  /* color: red; */
+}
+
+.my-button {
+  display: inline-block !important;
+}
+
+.btn-button {
+  padding: 0 !important;
+}
+
+.logo {
+  color: black;
+}
+
+body {
+/* background-color: #000000 !important; */
+}
+.icon_soc_media {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+#phone {
+ /* height: : 701px; */
+ /* width: 316px; */
+height: : 671px;
+width: 286px;
+}
