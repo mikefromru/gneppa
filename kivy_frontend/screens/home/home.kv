@@ -82,21 +82,20 @@
             orientaiton: 'horizontal'
             size_hint_y: None
             height: dp(60)
-            padding: (dp(0), dp(0), dp(0), dp(0))
+            padding: (dp(10), dp(0), dp(0), dp(0))
 
-            MDIconButton:
-                icon: 'alpha-g-box'
-                theme_icon_color: 'Custom'
-                icon_color: app.theme_cls.primary_color
-                icon_size: dp(40)
-                pos_hint: {'center_y': .5}
+            Image:
+                source: 'i/logo/dark_icon.jpg' if app.theme_cls.theme_style == 'Dark' else 'i/logo/white_icon.jpg'
+                allow_stretch: True
+                size_hint_y: .9 
+                size_hint_x: 0.2
 
             MDLabel:
-                text: 'Gn'+'[i]e[/i]'+'[b]ppa[/b]'
+                text: 'Gneppa'
                 font_name: 'OpenSans'
                 font_size: '22sp'
-                padding_x: dp(20)
                 markup: True
+                padding_x: dp(10)
 
             MDIconButton:
                 icon: 'bell-outline'

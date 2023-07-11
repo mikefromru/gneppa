@@ -78,7 +78,7 @@ class MainApp(MDApp):
     def build_config(self, config):
         self.config.setdefaults(
             "Settings", {
-                'theme': 'Light',
+                'theme': 'Dark',
                 'questions': 5,
                 'minutes': 1,
                 'sound': True,
