@@ -6,7 +6,7 @@
     MDIconButton:
         icon: "gesture-tap-button"
         theme_icon_color: 'Custom'
-        icon_color: app.theme_cls.primary_light
+        icon_color: app.theme_cls.primary_dark
         pos_hint: {"center_y": .5}
 
     MDLabel:
@@ -18,52 +18,35 @@
     id: my_container
     size_hint_y: None
     orientation: 'vertical'
-    padding: (dp(10), dp(0), dp(7), dp(0))
+    padding: (dp(0), dp(0), dp(7), dp(0))
     orientation: 'horizontal'
-        
-    MDBoxLayout:
-        orientation: 'horizontal'
-        size_hint_x: .2
-        canvas.before:
-            Color:
-                rgba: app.theme_cls.primary_color
-            RoundedRectangle:
-                size: (dp(42), dp(42))
-                pos : self.center_x - self.width/2.1 , self.center_y - self.height/2.5
-                radius: [dp(12),]
+    #md_bg_color: app.theme_cls.bg_light
+    radius: dp(0)
 
-        MDIcon:
-            icon: root.icon
-            theme_text_color: 'Custom'
-            text_color: app.theme_cls.primary_light
-            font_size: '25sp'
-            padding_x: dp(10)
-            pos_hint: {'center_y': .5}
+    MDIcon:
+        icon: root.icon
+        theme_text_color: 'Custom'
+#text_color: '#325477'
+        text_color: app.theme_cls.primary_dark
+        font_size: '30sp'
+        padding_x: dp(10)
+        pos_hint: {'center_y': .5}
 
-    MDBoxLayout:
-        orientation: 'vertical'
-        padding: (dp(0), dp(10), dp(0), dp(10))
 
-        MDLabel:
-            text: f'{root.name}'
-            font_name: 'fonts/OpenSans/OpenSans-Medium.ttf'
-            font_size: '15sp'
-            markup: True
-
-        MDProgressBar:
-            orientation: 'horizontal'
-            size_hint_x: .1
-            size_hint_y: .1
-            radius: 3
-            value: root.progress_value
-            opacity: root.progress_value_opacity
+    MDLabel:
+        text: f'{root.name}   [color=455A64]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
+        font_name: 'OpenSans'
+        #font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
+        font_size: '15sp'
+        markup: True
+        bold: True
 
     MDIcon:
         id: my_star
         icon: root.star
         font_size: '13sp'
         theme_text_color: 'Custom'
-        text_color: app.theme_cls.primary_light
+        text_color: app.theme_cls.primary_dark
         pos_hint: {'center_x': .1, 'center_y': .5}
         opacity: 0
 
@@ -83,30 +66,39 @@
             size_hint_y: None
             height: dp(60)
             padding: (dp(10), dp(0), dp(0), dp(0))
-
-            Image:
-                source: 'i/logo/dark_icon.jpg' if app.theme_cls.theme_style == 'Dark' else 'i/logo/white_icon.jpg'
-                allow_stretch: True
-                size_hint_y: .9 
-                size_hint_x: 0.2
+            md_bg_color: app.theme_cls.primary_color 
+#md_bg_color: app.theme_cls.bg_light
+#Image:
+#                source: 'i/logo/new_logo/logo_dark_bg.jpg' if app.theme_cls.theme_style == 'Dark' else 'i/logo/new_logo/logo_white_bg.jpg'
+#                allow_stretch: True
+#                size_hint_y: .9 
+#                size_hint_x: 0.2
 
             MDLabel:
                 text: 'Gneppa'
-                font_name: 'OpenSans'
+                font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf/'
                 font_size: '22sp'
                 markup: True
-                padding_x: dp(10)
+                theme_text_color: 'Custom'
+                text_color: 'white'
+
 
             MDIconButton:
                 icon: 'bell-outline'
                 icon_size: dp(26)
                 pos_hint: {'center_y': .5}
+                theme_text_color: 'Custom'
+                text_color: 'white'
+
 
             MDIconButton:
                 id: settings_menu
                 icon: 'dots-vertical'
                 icon_size: dp(26)
                 pos_hint: {'center_y': .5}
+                theme_text_color: 'Custom'
+                text_color: 'white'
+
                 on_release: 
                     root.menu_settings.open()
                     root.manager.transition.direction = 'left'

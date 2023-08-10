@@ -35,12 +35,18 @@ class MainApp(MDApp):
     app_version = __version__
     
     def build(self):
+
+
         Builder.load_file('main.kv')
         Builder.load_file('custom.kv')
         config = self.config
-        theme = config.get('Settings', 'theme')
-        MDApp.get_running_app().theme_cls.primary_palette = 'Teal'
-        MDApp.get_running_app().theme_cls.theme_style = theme
+        self.theme = config.get('Settings', 'theme')
+        self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.primary_hue = "900"  # "500"
+        #self.theme_cls.theme_style_switch_animation = True
+        #self.theme_cls.theme_style_switch_animation_duration = 0.8
+
+        MDApp.get_running_app().theme_cls.theme_style = self.theme
 
         # Some screens
         self.sm = ScreenManager()

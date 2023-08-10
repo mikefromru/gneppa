@@ -16,7 +16,10 @@ from threading import Thread
 from kivy.utils import platform
 from kivy.core.audio import SoundLoader
 from kivy.clock import Clock
-from kivymd.uix.snackbar import Snackbar
+
+# uix
+from kivymd.uix.label import MDLabel
+from kivymd.uix.snackbar import MDSnackbar
 
 # main
 from screens.finish.finish import FinishScreen
@@ -55,15 +58,16 @@ class TalkScreen(Screen):
         self.ids.tablo.text = str(n_question) + '/' + str(self.total)
 
     def set_button_active(self, i):
-        self.ids.play_button.state = 'normal'
-        self.ids.play_button.icon_color = MDApp.get_running_app().theme_cls.primary_color
+        self.ids.play_button.disabled = False
+        self.ids.play_button.icon_color = MDApp.get_running_app().theme_cls.primary_dark
     
     def play(self):
-        self.ids.play_button.state = 'down'
+        self.ids.play_button.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+        self.ids.play_button.disabled = True
         '''This is a play button to get a voice.
            Make the play button disabled then to run < play_ > function to get voice 
         '''
-        self.ids.play_button.icon_color = MDApp.get_running_app().theme_cls.primary_light
+        self.ids.play_button.disabled_color = MDApp.get_running_app().theme_cls.primary_dark
         Clock.schedule_once(self.play_, 0.2) # Run play_
 
     def play_(self, i):
@@ -76,6 +80,7 @@ class TalkScreen(Screen):
             playsound('sounds/sound.ogg')
             Clock.schedule_once(self.set_button_active, 4)
 
+
     def say(self, *args):
         self.ids.timer.opacity = 0
         self.set_tablo(self.n_question, self.total) # Set tablo in the head
@@ -83,8 +88,8 @@ class TalkScreen(Screen):
         Clock.schedule_once(self.show_timer, 3)
         Clock.schedule_once(self.run_timer, 3)
         self.ids.name.text = self.questions[0].get('name') + ' ?' # Get question text
-        self.ids.play_button.disabled = False # Set play button disabled then run say() func
-        self.ids.play_button.icon_color = MDApp.get_running_app().theme_cls.primary_light
+        self.ids.play_button.disabled = True # Set play button disabled then run say() func
+        self.ids.play_button.disabled_color = MDApp.get_running_app().theme_cls.primary_dark
         Clock.schedule_once(self.say_, 0.2)
     
     def say_(self, i):
@@ -166,7 +171,7 @@ class TalkScreen(Screen):
             Clock.schedule_once(self.say, 1)
 
         elif len(self.questions) == 1:
-            Snackbar(text='This is the last one').open()
+            MDSnackbar(MDLabel(text='This is the last one')).open()
 
     def make_pause(self):
         if self.pause:
@@ -185,3 +190,5 @@ class TalkScreen(Screen):
             pass
         self.n_question = 1
         self.hide_next_btn(self)
+        self.ids.play_button.disabled = False # Set play button disabled then run say() func
+        self.ids.play_button.disabled_color = MDApp.get_running_app().theme_cls.primary_dark

@@ -65,7 +65,8 @@ class DetailScreen(Screen):
                 width=dp(0),
                 )
             )
-            bl.add_widget(MDLabel(text=f"[b][color=009688]{j}.[/color][/b] [size=14sp]{x.get('name')}?[/size]", 
+            #bl.add_widget(MDLabel(text=f"[b][color=009688]{j}.[/color][/b] [size=14sp]{x.get('name')}?[/size]", 
+            bl.add_widget(MDLabel(text=f"[b]{j}.[/b] [size=14sp]{x.get('name')}?[/size]", 
                 valign='center',
                 padding_x=dp(0), 
                 font_name='fonts/OpenSans/OpenSans-Medium.ttf',
@@ -82,9 +83,9 @@ class DetailScreen(Screen):
         ids = ast.literal_eval(self.config.get('Favorite', 'ids'))
          
         if id in ids:
-            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_color
+            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
         else:
-            self.ids.star.icon_color = 'grey'
+            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_light 
         
         self.ids.star.opacity = 1
 
@@ -97,9 +98,9 @@ class DetailScreen(Screen):
         if id in ids:
             ids.remove(id)
             print('Removed')
-            self.ids.star.icon_color = 'grey'
+            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_light
         else:
-            if len(ids) < 11:
+            if len(ids) < 10:
                 ids.append(id)
                 print('Added')
                 self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark

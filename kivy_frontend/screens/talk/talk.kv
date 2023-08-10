@@ -7,11 +7,12 @@
             adaptive_height: True
             height: dp(70)
             icon_size: dp(14)
+            md_bg_color: app.theme_cls.primary_color
 
             MDIconButton:
                 icon: 'arrow-left'
                 theme_icon_color: 'Custom'
-                icon_color: app.theme_cls.primary_color
+                icon_color: 'white'
                 on_release: root.manager.current = 'home_screen'
 
             MDLabel:
@@ -21,7 +22,7 @@
                 font_name: 'OpenSans'
                 font_size: '18sp'
                 theme_text_color: 'Custom'
-                text_color: app.theme_cls.primary_color
+                text_color: 'white'
                 bold: True
 
         MDFloatLayout:
@@ -46,13 +47,17 @@
 
             MDIconButton:
                 id: play_button
+#icon: 'i/play/play_white36dp.png'
                 icon: 'play-circle'
                 theme_icon_color: 'Custom'
-                icon_color: app.theme_cls.primary_light
+                icon_color: app.theme_cls.primary_dark
                 icon_size: dp(45)
                 pos_hint: {'center_x': .0, 'center_y': .5}
                 on_release: root.play()
                 ripple_scale: 0
+                disabled: True
+                disabled_color: app.theme_cls.primary_dark
+
 
             MDLabel:
                 id: name
@@ -68,13 +73,15 @@
                 font_name: 'fonts/OpenSans/OpenSans-Bold.ttf'
                 font_size: '35sp'
                 theme_text_color: 'Custom'
-                text_color: app.theme_cls.primary_color
+                text_color: app.theme_cls.primary_dark
                 pos_hint: {'center_x': .5, 'center_y': .5}
                 on_release: root.make_pause()
                 opacity: 0
  
             MDTextButton:
                 id: next_btn
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.primary_color
                 text: 'next'
                 font_name: 'OpenSans'
                 pos_hint: {'center_x': .5, 'center_y': .2}

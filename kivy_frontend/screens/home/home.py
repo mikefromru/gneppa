@@ -92,7 +92,7 @@ class HomeScreen(Screen):
                 {
                     "text": f"{i}",
                     "leading_icon": dct_settings[i],
-                    'leading_icon_color': MDApp.get_running_app().theme_cls.primary_light,
+                    'leading_icon_color': MDApp.get_running_app().theme_cls.primary_dark,
                     "on_release": lambda x=f"{i}": self.menu_settings_callback(x),
                     } for i in dct_settings
             ]
@@ -151,9 +151,9 @@ class HomeScreen(Screen):
         ids = ast.literal_eval(self.config.get('Favorite', 'ids'))
          
         if id in ids:
-            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_color
         else:
-            self.ids.star.icon_color = 'grey'
+            self.ids.star.icon_color = 'red'
         
     def show_main_box(self, i):
         self.ids.main_box.opacity = 1
