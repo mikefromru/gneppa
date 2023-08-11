@@ -5,9 +5,9 @@
         MDBoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
-            #md_bg_color: rgba('#F7F8FC')
             height:  dp(70)
             md_bg_color: app.theme_cls.primary_color
+
 
             MDIconButton:
                 icon: 'arrow-left'
@@ -17,6 +17,7 @@
                 on_release: 
                     root.manager.transition.direction = 'right'
                     root.manager.current = 'home_screen'
+
             MDLabel:
                 id: title
                 font_name: 'OpenSans'
@@ -24,8 +25,6 @@
                 bold: True
                 theme_text_color: 'Custom'
                 text_color: 'white'
-
-
 
             MDIconButton:
                 id: star
