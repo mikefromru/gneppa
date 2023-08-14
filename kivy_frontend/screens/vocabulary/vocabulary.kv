@@ -7,13 +7,17 @@
             size_hint_y: None
             orientation: 'horizontal'
             height: dp(60)
+            md_bg_color: app.theme_cls.primary_color 
 
             MDIconButton:
                 icon: 'arrow-left'
                 pos_hint: {'center_y': .5}
                 theme_icon_color: 'Custom'
-                icon_color: app.theme_cls.primary_color
+                icon_color: 'white'
+
+
                 on_release: 
+
                     root.manager.transition.direction = 'right'
                     root.manager.current = 'home_screen'
 
@@ -22,7 +26,10 @@
                 font_name: 'OpenSans'
                 font_size: '16sp'
                 bold: True
-        
+                theme_text_color: 'Custom'
+                text_color: 'white'
+
+       
         ScrollView:
             effect_cls: 'ScrollEffect'
 
