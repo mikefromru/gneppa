@@ -7,7 +7,8 @@
     radius: dp(0)
 
     MDIcon:
-        icon: root.icon
+        #icon: root.icon
+        icon: 'circle-small'
         theme_text_color: 'Custom'
         text_color: app.theme_cls.primary_dark
         font_size: '30sp'
@@ -50,8 +51,8 @@
             MDIconButton:
                 icon: 'arrow-left'
                 pos_hint: {'center_y': .5}
-#theme_icon_color: 'Custom'
-#icon_color: 'white'
+                #theme_icon_color: 'Custom'
+                #icon_color: 'white'
                 on_release:
                     root.manager.transition.direction = 'right'
                     root.manager.current = 'home_screen'
@@ -66,7 +67,7 @@
             MDIconButton:
                 icon: 'magnify'
                 theme_icon_color: 'Custom'
-                icon_color: app.theme_cls.primary_color
+                icon_color: app.theme_cls.primary_dark
                 pos_hint: {'center_y': .5}
                 on_release:
                     root.callback(self)

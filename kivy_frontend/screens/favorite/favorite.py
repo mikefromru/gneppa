@@ -93,7 +93,7 @@ class FavoriteScreen(Screen):
                 'id': x.get('id'),
                 'name': x.get('name'),
                 'slug': x.get('slug'),
-                'icon': x.get('icon'),
+                #'icon': x.get('icon'),
                 'star': 'star' if x.get('id') in ids_favorite else '',
                 'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
                 'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
