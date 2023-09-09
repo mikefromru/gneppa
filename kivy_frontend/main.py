@@ -23,7 +23,7 @@ from screens.home.home import HomeScreen
 from utils.utils import create_screen
 from settings import url
 
-__version__ = '0.8'
+__version__ = '1.0'
 
 class LoadScreen(Screen):
 
