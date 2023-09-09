@@ -12,7 +12,7 @@
 <img style="padding: 10px" src=https://play-lh.googleusercontent.com/sSTKCzzNh7zZE1UbidKtrIf-OS1OepkKucIUw14kELEyRGifEfom4vtX9hhajFJstf_x=w2560-h1440-rw width='100'>
 </p>
 
-### Technologi
+### Technology
 - Python
 - Django
 - Django Rest Framework
@@ -20,8 +20,8 @@
 - KivyMD
 - Postgres
 - Ngnix
-### Использование
-Приложение размещено на нескольких площадках таких как:
+### Where and how to get it
+Gneppa is located on some platform such as:
 [Google Play](https://play.google.com/store/apps/details?id=org.gneppa.gneppa)
 [AppGallery](https://appgallery.huawei.com/app/C106945401)
 [RuStore](https://apps.rustore.ru/app/org.gneppa.gneppa)
