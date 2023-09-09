@@ -20,3 +20,8 @@
 - KivyMD
 - Postgres
 - Ngnix
+### Использование
+Приложение размещено на нескольких площадках таких как:
+[Google Play](https://play.google.com/store/apps/details?id=org.gneppa.gneppa)
+[AppGallery](https://appgallery.huawei.com/app/C106945401)
+[RuStore](https://apps.rustore.ru/app/org.gneppa.gneppa)
