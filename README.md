@@ -21,6 +21,7 @@
 - Postgres
 - Ngnix
 ### Where and how to get it
+Web site is [https://gneppa.com](https://gneppa.com)<br/>
 Gneppa is located on some platform such as:
 [Google Play](https://play.google.com/store/apps/details?id=org.gneppa.gneppa)
 [AppGallery](https://appgallery.huawei.com/app/C106945401)
