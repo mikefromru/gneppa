@@ -64,7 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-SOUTH_TESTS_MIGRATE = False
+#SOUTH_TESTS_MIGRATE = False
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -75,20 +75,8 @@ DATABASES = {
         'USER': USER,
         'PASSWORD': PASSWORD,
         'PORT': PORT,
-        'TEST': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'test_db',
-        }
     }
 }
-
-
-#import sys
-#if 'test' in sys.argv:
-    #print('test test test'.upper())
-    #DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
-    #DATABASES['default'] = DATABASES['test']
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
