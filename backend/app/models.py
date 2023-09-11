@@ -19,7 +19,7 @@ class Level(models.Model):
     approved = models.BooleanField(default=True)
     slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)
     image = models.ImageField(upload_to='i/image_levels/', validators=[validate_image], blank=True, null=True)
-    icon = models.CharField(max_length=100, default='circle', editable=True, null=True, blank=True)
+    #icon = models.CharField(max_length=100, default='circle', editable=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
