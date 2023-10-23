@@ -79,6 +79,8 @@ DATABASES = {
         'ENGINE': env('DB_ENGINE'),
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
+        # 'HOST': env('DB_HOST'),
+        'HOST': 'db',
         'PASSWORD': env('DB_PASSWORD'),
         'PORT': env('DB_PORT'),
     }
