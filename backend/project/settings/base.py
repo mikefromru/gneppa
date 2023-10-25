@@ -19,7 +19,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = (sys.argv[1] == 'runserver')
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 # Application definition
 
@@ -79,8 +79,7 @@ DATABASES = {
         'ENGINE': env('DB_ENGINE'),
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
-        # 'HOST': env('DB_HOST'),
-        'HOST': 'db',
+        'HOST': env('DB_HOST'),
         'PASSWORD': env('DB_PASSWORD'),
         'PORT': env('DB_PORT'),
     }
