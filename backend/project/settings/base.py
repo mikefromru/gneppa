@@ -1,6 +1,5 @@
 from pathlib import Path
 import os, sys
-from .settings_local import *
 import environ
 
 
