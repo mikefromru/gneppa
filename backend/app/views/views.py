@@ -75,16 +75,16 @@ def download_app(request, name):
 	return redirect('/')
 
 def get_click(request, name):
-	try:
-		queryset = ClickCounter.objects.get(button=name)
-		queryset.counter += 1
-		queryset.save()
-		if name == 'android':
-			return redirect("https://play.google.com/store/apps/details?id=org.gneppa.gneppa&hl=en&gl=US")
-		elif name == 'appgallery':
-			return redirect("https://appgallery.huawei.com/app/C106945401")
-	except:
-		return redirect('/')
+	# try:
+	# queryset = ClickCounter.objects.get(button=name)
+	# queryset.counter += 1
+	# queryset.save()
+	if name == 'android':
+		return redirect("https://play.google.com/store/apps/details?id=org.gneppa.gneppa&hl=en&gl=US")
+	elif name == 'appgallery':
+		return redirect("https://appgallery.huawei.com/app/C106945401")
+	# except:
+	# 	return redirect('/')
 
 def politica(request):
 	return render(request, 'app/politica.html')
