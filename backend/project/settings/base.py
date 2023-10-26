@@ -3,12 +3,11 @@ import os, sys
 from .settings_local import *
 import environ
 
-env = environ.Env()
-env.read_env()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+env = environ.Env()
+env.read_env(BASE_DIR / '../.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -75,13 +74,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'HOST': env('DB_HOST'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'PORT': env('DB_PORT'),
+        'ENGINE': env('POSTGRES_ENGINE'),
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'HOST': env('POSTGRES_HOST'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
