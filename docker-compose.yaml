@@ -16,7 +16,6 @@ services:
 
   nginx:
     image: nginx:latest
-    #image: nginx
     container_name: NGNIX
     ports:
       - 80:80
@@ -31,12 +30,12 @@ services:
 
   db:
     image: postgres:latest
-    #image: postgres:16.0-alpine3.17
     container_name: POSTGRES
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      
     ports:
       - 5433:5432
     volumes:
@@ -48,8 +47,6 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
-
-
 
 volumes:
   static_volume:
