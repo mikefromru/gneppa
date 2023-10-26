@@ -68,7 +68,6 @@ def download_app(request, name):
 		response = FileResponse(open(filename, 'rb'))
 		name.count += 1
 		name.save()
-		# AppFile.objects.filter(pk=name.id).update(count=F('count') + 1)
 		return response
 	else:
 		raise Http404
@@ -89,10 +88,3 @@ def get_click(request, name):
 
 def politica(request):
 	return render(request, 'app/politica.html')
-
-'''
-# @staff_member_required
-def index(request):
-	queryset = Level.objects.all()[:5]
-	return render(request, 'app/index.html', {'serializer': LevelSerializer(queryset, many=True).data})
-'''
