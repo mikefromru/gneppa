@@ -1,0 +1,9 @@
+.git/
+backend/*.sqlite3
+#project/settings/.env
+README.md
+kivy_frontend
+local_tools
+tmpSounds
+backup
+tmpImages

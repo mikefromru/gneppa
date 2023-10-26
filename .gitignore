@@ -29,8 +29,6 @@ bin/
 kivy_frontend/settings.py
 
 main.ini
-settings
-
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
