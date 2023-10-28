@@ -23,7 +23,7 @@ archive/
 
 # Kivy app
 .buildozer/
-i/
+kivy_frontend/i/
 keystore/
 sounds/
 bin/
