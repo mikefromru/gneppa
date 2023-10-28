@@ -16,13 +16,14 @@ local_tools/
 tmpImages/
 tmpSounds/
 backup/
+archive/
 
 # Backup files # 
 *.bak 
 
 # Kivy app
 .buildozer/
-i/
+kivy_frontend/i/
 keystore/
 sounds/
 bin/

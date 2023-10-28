@@ -68,7 +68,6 @@ def download_app(request, name):
 		response = FileResponse(open(filename, 'rb'))
 		name.count += 1
 		name.save()
-		# AppFile.objects.filter(pk=name.id).update(count=F('count') + 1)
 		return response
 	else:
 		raise Http404
@@ -76,23 +75,16 @@ def download_app(request, name):
 	return redirect('/')
 
 def get_click(request, name):
-	try:
-		queryset = ClickCounter.objects.get(button=name)
-		queryset.counter += 1
-		queryset.save()
-		if name == 'android':
-			return redirect("https://play.google.com/store/apps/details?id=org.gneppa.gneppa&hl=en&gl=US")
-		elif name == 'appgallery':
-			return redirect("https://appgallery.huawei.com/app/C106945401")
-	except:
-		return redirect('/')
+	# try:
+	# queryset = ClickCounter.objects.get(button=name)
+	# queryset.counter += 1
+	# queryset.save()
+	if name == 'android':
+		return redirect("https://play.google.com/store/apps/details?id=org.gneppa.gneppa&hl=en&gl=US")
+	elif name == 'appgallery':
+		return redirect("https://appgallery.huawei.com/app/C106945401")
+	# except:
+	# 	return redirect('/')
 
 def politica(request):
 	return render(request, 'app/politica.html')
-
-'''
-# @staff_member_required
-def index(request):
-	queryset = Level.objects.all()[:5]
-	return render(request, 'app/index.html', {'serializer': LevelSerializer(queryset, many=True).data})
-'''

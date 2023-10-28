@@ -3,6 +3,7 @@ FROM python:3.11-slim
 
 # Set the working directory to /app
 WORKDIR /backend
+RUN apt-get update
 # Install any needed packages specified in requirements.txt
 RUN pip install --upgrade pip
 COPY requirements.txt .
