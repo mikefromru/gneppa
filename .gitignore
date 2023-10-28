@@ -16,6 +16,7 @@ local_tools/
 tmpImages/
 tmpSounds/
 backup/
+archive/
 
 # Backup files # 
 *.bak 
