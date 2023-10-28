@@ -25,6 +25,8 @@ services:
       - ./backend:/backend
       - ./nginx:/etc/nginx/conf.d
       - static_volume:/backend/staticfiles
+      - ./certbot/www/:/var/www/certbot/:r
+      - ./certbot/conf/:/etc/letsencrypt/:r
     depends_on:
       - web
 
@@ -35,7 +37,6 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      
     ports:
       - 5433:5432
     volumes:
