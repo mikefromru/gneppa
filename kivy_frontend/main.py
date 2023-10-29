@@ -23,7 +23,7 @@ from screens.home.home import HomeScreen
 from utils.utils import create_screen
 from settings import url
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 class LoadScreen(Screen):
 
@@ -41,7 +41,8 @@ class MainApp(MDApp):
         Builder.load_file('custom.kv')
         config = self.config
         self.theme = config.get('Settings', 'theme')
-        self.theme_cls.primary_palette = 'BlueGray'
+        #self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.primary_palette = 'Orange'
         self.theme_cls.primary_hue = "900"  # "500"
         #self.theme_cls.theme_style_switch_animation = True
         #self.theme_cls.theme_style_switch_animation_duration = 0.8
