@@ -116,7 +116,7 @@ class HomeScreen(Screen):
             create_screen('settings.kv', 'settings_screen', SettingsScreen)
             MDApp.get_running_app().sm.current = 'settings_screen'
 
-        MDApp.get_running_app().sm.transition.direction = 'left'
+        #MDApp.get_running_app().sm.transition.direction = 'left'
         self.menu_settings.dismiss()
      
     def add_levels_widgets(self, i):
@@ -140,6 +140,7 @@ class HomeScreen(Screen):
 
     
     def on_enter(self):
+        #print('<<<<<<<< HI  >>>>>>>>>>>')
         self.config = MDApp.get_running_app().config
         Clock.schedule_once(self.add_levels_widgets, .1)
         Clock.schedule_once(self.show_main_box, .2)

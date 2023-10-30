@@ -50,7 +50,7 @@ class MainApp(MDApp):
         MDApp.get_running_app().theme_cls.theme_style = self.theme
 
         # Some screens
-        self.sm = ScreenManager()
+        self.sm = ScreenManager(transition=NoTransition())
         self.sm.add_widget(LoadScreen(name='load_screen'))
         return self.sm
 

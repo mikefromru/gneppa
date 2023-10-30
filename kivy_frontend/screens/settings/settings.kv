@@ -31,9 +31,7 @@
                 theme_icon_color: 'Custom'
                 icon_color: 'white'
                 #icon_color: app.theme_cls.primary_dark
-                on_release: 
-                    root.manager.transition.direction = 'right'
-                    root.manager.current = 'home_screen'
+                on_release: root.go_back('home')
 
             MDLabel:
                 text: 'Settings'

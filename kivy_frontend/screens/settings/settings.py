@@ -149,3 +149,8 @@ class SettingsScreen(Screen):
                 ],
             )
         self.dialog.open()
+
+    def go_back(self, nav_item):
+        s = self.manager.get_screen('home_screen')
+        s.ids.bottom_nav.switch_tab(nav_item)
+        self.manager.current = 'home_screen'

@@ -1,3 +1,4 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
 <MenuHeader>
     spacing: "12dp"
     padding: "4dp"
@@ -22,7 +23,7 @@
 #orientation: 'horizontal'
     md_bg_color: app.theme_cls.bg_light
     radius: dp(10)
-    
+
     
 #MDBoxLayout:
 #        orientation: 'vertical'
@@ -173,51 +174,47 @@
                 padding: dp(20)
 
     MDBottomNavigation:
-        
-        size_hint: 1, 1
+        id: bottom_nav 
 
         MDBottomNavigationItem:
-            name: ''
+            name: 'home'
             text: 'Home'
             icon: 'home'
-
-#MyContainer: 
-
+   
             RecycleView:
                 id: rv
                 viewclass: 'MyContainer'
                 effect_cls: 'ScrollEffect'
                 do_scroll_x: False
                 do_scroll_y: True
-
+                
+                
                 RecycleBoxLayout:
                     id: main_box
                     opacity: 0
                     orientation: 'vertical'
                     size_hint_y: None
-                    spacing: dp(20)
+                    spacing: dp(10)
                     default_size_hint: 1, None
                     height: self.minimum_height
                     default_size: None, dp(150)
-                    padding: dp(20)
-
+                    padding: dp(15)
 
         MDBottomNavigationItem:
-            name: ''
+            name: 'favorites'
             text: 'Favorites'
             icon: 'star'
             badge_icon: "numeric-10"
 
         MDBottomNavigationItem:
-            name: 'screen 3'
+            name: 'search'
             text: 'Search'
             icon: 'magnify'
 
         MDBottomNavigationItem:
-            name: 'settings_screen'
+            name: 'settings'
             text: 'Settings'
             icon: 'cog'
-            badge_icon: "numeric-0"
             on_tab_release:
                 root.manager.current = 'settings_screen'
 
