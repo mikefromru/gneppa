@@ -70,6 +70,12 @@ class SearchScreen(Screen):
         if key == 13:
             self.callback(self)
 
+    def get_my_screen(self, nav_item):
+        s = self.manager.get_screen(nav_item)
+        s.ids.bottom_nav.switch_tab(nav_item)
+        self.manager.current = nav_item
+
+
     def callback(self, instance):
         instance = self.ids.name
         if len(instance.text) > 2 and len(instance.text) < 25:

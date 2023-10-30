@@ -1,4 +1,6 @@
 #:import NoTransition kivy.uix.screenmanager.NoTransition
+# import Screen2 screens/search/search/.baseclass.screen2.Screen2
+
 <MenuHeader>
     spacing: "12dp"
     padding: "4dp"
@@ -175,9 +177,10 @@
 
     MDBottomNavigation:
         id: bottom_nav 
+       
 
         MDBottomNavigationItem:
-            name: 'home'
+            name: 'home_screen'
             text: 'Home'
             icon: 'home'
    
@@ -207,9 +210,14 @@
             badge_icon: "numeric-10"
 
         MDBottomNavigationItem:
-            name: 'search'
+            name: 'search_screen'
             text: 'Search'
             icon: 'magnify'
+            on_tab_release: root.get_my_screen('search_screen')
+
+
+            #: include screens/settings/settings.kv
+
 
         MDBottomNavigationItem:
             name: 'settings'

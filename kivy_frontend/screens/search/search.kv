@@ -86,3 +86,38 @@
                 height: self.minimum_height
                 default_size: None, dp(55)
                 padding: dp(0) 
+        
+        MDBottomNavigation:
+            id: bottom_nav 
+           
+            MDBottomNavigationItem:
+                name: 'home_screen'
+                text: 'Home'
+                icon: 'home'
+                on_tab_release: root.get_my_screen(self.name)
+
+
+            MDBottomNavigationItem:
+                name: 'favorites'
+                text: 'Favorites'
+                icon: 'star'
+                badge_icon: "numeric-10"
+                on_tab_release:
+                    root.manager.current = 'favories_screen'
+
+
+            MDBottomNavigationItem:
+                name: 'search_screen'
+                text: 'Search'
+                icon: 'magnify'
+                on_tab_release:
+                    root.manager.current = 'search_screen'
+
+            MDBottomNavigationItem:
+                name: 'settings'
+                text: 'Settings'
+                icon: 'cog'
+                on_tab_release:
+                    root.manager.current = 'settings_screen'
+
+
