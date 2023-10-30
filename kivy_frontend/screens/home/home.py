@@ -134,7 +134,7 @@ class HomeScreen(Screen):
                 'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
                 'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
 
-                } for x in self.levels[:5]] 
+                } for x in self.levels] 
 
         self.ids.rv.data = lst
 

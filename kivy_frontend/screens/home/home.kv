@@ -82,16 +82,25 @@
 #            on_release: root.get_vocabulary()
 
     MDBoxLayout:
-        padding: dp(15)
+        padding: [dp(0), dp(0), dp(0), dp(10)]
         spacing: dp(20)
         orientation: 'horizontal'
-        MDRoundFlatButton:
+        MDRoundFlatIconButton:
             text: 'Vocabularu'
+            icon: 'school'
+            font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
+            font_size: '15sp'
+            markup: True
             size_hint: 1, None
 
         MDFillRoundFlatButton:
             text: 'Questions'
+            font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
+            font_size: '15sp'
+            markup: True
             size_hint: 1, None
+
+    
 
 
 <HomeScreen>
@@ -162,3 +171,54 @@
                 height: self.minimum_height
                 default_size: None, dp(150)
                 padding: dp(20)
+
+    MDBottomNavigation:
+        
+        size_hint: 1, 1
+
+        MDBottomNavigationItem:
+            name: ''
+            text: 'Home'
+            icon: 'home'
+
+#MyContainer: 
+
+            RecycleView:
+                id: rv
+                viewclass: 'MyContainer'
+                effect_cls: 'ScrollEffect'
+                do_scroll_x: False
+                do_scroll_y: True
+
+                RecycleBoxLayout:
+                    id: main_box
+                    opacity: 0
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    spacing: dp(20)
+                    default_size_hint: 1, None
+                    height: self.minimum_height
+                    default_size: None, dp(150)
+                    padding: dp(20)
+
+
+        MDBottomNavigationItem:
+            name: ''
+            text: 'Favorites'
+            icon: 'star'
+            badge_icon: "numeric-10"
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Search'
+            icon: 'magnify'
+
+        MDBottomNavigationItem:
+            name: 'settings_screen'
+            text: 'Settings'
+            icon: 'cog'
+            badge_icon: "numeric-0"
+            on_tab_release:
+                root.manager.current = 'settings_screen'
+
+
