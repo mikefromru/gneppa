@@ -1,5 +1,8 @@
 #:import NoTransition kivy.uix.screenmanager.NoTransition
-# import Screen2 screens/search/search/.baseclass.screen2.Screen2
+#:import Favorite screens.favorite.favorite.FavoriteScreen
+
+#:include screens/favorite/favorite.kv
+#:include screens/search/search.kv
 
 <MenuHeader>
     spacing: "12dp"
@@ -177,6 +180,7 @@
 
     MDBottomNavigation:
         id: bottom_nav 
+#label_include: tab_label
        
 
         MDBottomNavigationItem:
@@ -204,19 +208,22 @@
                     padding: dp(15)
 
         MDBottomNavigationItem:
-            name: 'favorites'
+            name: 'favorite_screen'
             text: 'Favorites'
             icon: 'star'
             badge_icon: "numeric-10"
+            on_tab_release: root.demo(self.name)
+#on_tab_release: Favorite.on_enter(self)
+            FavoriteScreen:
+#id: label_include
+
 
         MDBottomNavigationItem:
             name: 'search_screen'
             text: 'Search'
             icon: 'magnify'
-            on_tab_release: root.get_my_screen('search_screen')
-
-
-            #: include screens/settings/settings.kv
+#on_tab_release: root.demo(self.name)
+            SearchScreen:
 
 
         MDBottomNavigationItem:

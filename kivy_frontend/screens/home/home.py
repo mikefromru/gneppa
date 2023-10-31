@@ -161,13 +161,19 @@ class HomeScreen(Screen):
         self.ids.main_box.opacity = 1
         self.remove_widget(self.loading)
 
-    def get_my_screen(self, nav_item):
+    def demo(self, nav_item):
         s = self.manager.get_screen(nav_item)
-        s.ids.bottom_nav.switch_tab(nav_item)
+        self.ids.bottom_nav.switch_tab(nav_item)
         self.manager.current = nav_item
-
+ 
+    def get_my_screen(self, nav_item):
+        #s = self.manager.get_screen(nav_item)
+        #self.ids.bottom_nav.switch_tab(nav_item)
+        #self.manager.current = nav_item
+        pass
 
     def create_some_screens(self, i):
         create_screen('settings.kv', 'settings_screen', SettingsScreen)
         create_screen('detail.kv', 'detail_screen', DetailScreen)
         create_screen('search.kv', 'search_screen', SearchScreen)
+        create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)

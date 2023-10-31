@@ -114,6 +114,7 @@ class FavoriteScreen(Screen):
             self.add_widget(self.empty_text)
 
     def on_enter(self):
+        print('---------------- I am in Favorite screen ---------')
         self.config = MDApp.get_running_app().config
         Clock.schedule_once(self.add_levels_widgets, .2)
         Clock.schedule_once(self.create_some_screens, .3)
@@ -127,8 +128,7 @@ class FavoriteScreen(Screen):
             self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
         else:
             self.ids.star.icon_color = 'grey'
-        
-    
+
     def create_some_screens(self, i):
         pass
     

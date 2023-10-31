@@ -59,8 +59,10 @@ class SearchScreen(Screen):
     def __init__(self, **kwargs):
         super(SearchScreen, self).__init__(**kwargs)
         Window.bind(on_keyboard=self.goBackWindow)
+        self.config = MDApp.get_running_app().config
     
     def on_enter(self):
+        print('--------- from SearchScreen ------')
         self.config = MDApp.get_running_app().config
 
     def on_start(self):
