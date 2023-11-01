@@ -38,7 +38,7 @@ class MainApp(MDApp):
 
 
         Builder.load_file('main.kv')
-        Builder.load_file('custom.kv')
+        #Builder.load_file('custom.kv')
         config = self.config
         self.theme = config.get('Settings', 'theme')
         #self.theme_cls.primary_palette = 'BlueGray'
@@ -74,13 +74,14 @@ class MainApp(MDApp):
         HomeScreen.levels = [x for x in result if x['approved'] == True]
         self.sm.current = 'home_screen'
 
-    def get_data(self):
-        for x in range(50000):
-            print(x)
-        Clock.schedule_interval(self.go_to_app, 1)
+#    def get_data(self):
+        #for x in range(50000):
+            #print(x)
+        #Clock.schedule_interval(self.go_to_app, 1)
 
-    def go_to_app(self, i):
-        self.sm.current = 'home_screen'
+    #def go_to_app(self, i):
+        #self.sm.current = 'home_screen'
+
 
     def build_config(self, config):
         self.config.setdefaults(
