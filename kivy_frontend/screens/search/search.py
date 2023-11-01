@@ -60,9 +60,9 @@ class SearchScreen(Screen):
         super(SearchScreen, self).__init__(**kwargs)
         Window.bind(on_keyboard=self.goBackWindow)
         self.config = MDApp.get_running_app().config
+        print('--------- from SearchScreen ------')
     
     def on_enter(self):
-        print('--------- from SearchScreen ------')
         self.config = MDApp.get_running_app().config
 
     def on_start(self):
@@ -72,11 +72,13 @@ class SearchScreen(Screen):
         if key == 13:
             self.callback(self)
 
-    def get_my_screen(self, nav_item):
-        s = self.manager.get_screen(nav_item)
-        s.ids.bottom_nav.switch_tab(nav_item)
-        self.manager.current = nav_item
-
+    def go_home(self):
+        #s = self.manager.get_screen('home_screen')
+        #s = MDApp.get_running_app().sm.get_screen = 'home_screen'
+        #s.ids.bottom_nav.switch_tab('home_screen')
+        #self.manager.current = 'home_screen'
+        #MDApp.get_running_app().sm.current = 'settings_screen'
+        pass
 
     def callback(self, instance):
         instance = self.ids.name

@@ -29,12 +29,9 @@ class SettingsScreen(Screen):
 
     def __init__(self, **kwargs):
         super(SettingsScreen, self).__init__(**kwargs)
-        print('----------- SettingsScreen -------')
         self.config = MDApp.get_running_app().config
-        Clock.schedule_once(self.create_menu, 10)
-        Clock.schedule_once(self.get_window, 11)
-        Clock.schedule_once(self.get_version, 12)
-        
+        Clock.schedule_once(self.foo, 0.1)
+
         self.menu_minutes = [
             {
                 "text": f"{i}",
@@ -52,9 +49,9 @@ class SettingsScreen(Screen):
                 "on_release": lambda x=f"{i}": self.questions_change(x),
             } for i in ['5', '7', '10'] # you can add 'All' to the list
         ]
+        
+    def foo(self, i):
 
-    def create_menu(self, i):
-        """This func is to create two widgets for minutes and questions"""
         self.menu_minutes = MDDropdownMenu(
             caller=self.ids.minutes,
             items=self.menu_minutes,
@@ -66,15 +63,13 @@ class SettingsScreen(Screen):
             items=self.menu_questions,
             width_mult=1,
         )
-
-    #def on_enter(self):
-    def get_version(self, i):
+    def on_enter(self):
         current_year = datetime.date.today().year
         msg = f'(c) 2022-{current_year}. MFR'
         self.ids.fromtoyear.text = msg
         number_string = MDApp.get_running_app().app_version
         self.ids.app_version.text =  'Version ' + number_string
-        #Clock.schedule_once(self.get_window, 0.1)
+        Clock.schedule_once(self.get_window, 0.1)
 
     def get_window(self, i):
         self.minutes = self.config.getint('Settings', 'minutes')
@@ -92,7 +87,7 @@ class SettingsScreen(Screen):
         self.config.write()
         self.menu_minutes.dismiss()
 
-    def change_theme(self, insta):
+    def theme_change(self, insta):
         switch = self.ids.set_bool.active
 
         if switch:
@@ -154,4 +149,9 @@ class SettingsScreen(Screen):
                 ],
             )
         self.dialog.open()
+
+    def go_back(self, nav_item):
+        s = self.manager.get_screen('home_screen')
+        s.ids.bottom_nav.switch_tab(nav_item)
+        self.manager.current = 'home_screen'
 

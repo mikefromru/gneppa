@@ -85,7 +85,7 @@ class DetailScreen(Screen):
         if id in ids:
             self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
         else:
-            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_light 
+            self.ids.star.icon_color = 'gray'
         
         self.ids.star.opacity = 1
 
@@ -98,7 +98,7 @@ class DetailScreen(Screen):
         if id in ids:
             ids.remove(id)
             print('Removed')
-            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_light
+            self.ids.star.icon_color = 'gray'
         else:
             if len(ids) < 10:
                 ids.append(id)

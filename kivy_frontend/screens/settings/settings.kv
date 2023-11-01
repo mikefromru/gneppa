@@ -24,21 +24,17 @@
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-#md_bg_color: app.theme_cls.primary_color 
-
-            MDIconButton:
-                icon: 'arrow-left'
-                theme_icon_color: 'Custom'
-                icon_color: 'white'
-                #icon_color: app.theme_cls.primary_dark
-                on_release: root.go_back('home')
+            md_bg_color: app.theme_cls.bg_light 
+            height: dp(60)
 
             MDLabel:
                 text: 'Settings'
                 font_size: '16sp'
-                theme_text_color: 'Custom'
-                text_color: 'white'
+#theme_text_color: 'Custom'
+#text_color: 'white'
                 bold: True
+                halign: 'center'
+
 
         MDBoxLayout:
             orientation: 'horizontal'
@@ -129,7 +125,7 @@
 
             MDSwitch:
                 id: set_bool
-                on_active: root.theme_change(self)
+                on_active: root.change_theme(self)
                 pos_hint: {'center_y': .5}
                 icon_active: 'check'
 

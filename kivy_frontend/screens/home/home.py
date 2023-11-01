@@ -88,21 +88,22 @@ class HomeScreen(Screen):
         self.add_widget(self.loading)
         dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
 
-        menu_settings_items = [
-                {
-                    "text": f"{i}",
-                    "leading_icon": dct_settings[i],
-                    'leading_icon_color': MDApp.get_running_app().theme_cls.primary_dark,
-                    "on_release": lambda x=f"{i}": self.menu_settings_callback(x),
-                    } for i in dct_settings
-            ]
+#        menu_settings_items = [
+                #{
+                    #"text": f"{i}",
+                    #"leading_icon": dct_settings[i],
+                    #'leading_icon_color': MDApp.get_running_app().theme_cls.primary_dark,
+                    #"on_release": lambda x=f"{i}": self.menu_settings_callback(x),
+                    #} for i in dct_settings
+            #]
 
-        self.menu_settings = MDDropdownMenu(
-            header_cls=MenuHeader(),
-            caller=self.ids.settings_menu,
-            items=menu_settings_items,
-            width_mult=2,
-        )
+        #self.menu_settings = MDDropdownMenu(
+            #header_cls=MenuHeader(),
+            #caller=self.ids.settings_menu,
+            #items=menu_settings_items,
+            #width_mult=2,
+        #)
+
 
     def menu_settings_callback(self, text_item):
         if text_item == 'Favorite':
@@ -147,6 +148,7 @@ class HomeScreen(Screen):
         Clock.schedule_once(self.show_main_box, .2)
         Clock.schedule_once(self.create_some_screens, .4)
         DetailScreen.levels = self.levels 
+        FavoriteScreen.levels = self.levels 
 
     def get_stars_icon(self):
         id = self.level.get('id')
@@ -173,7 +175,8 @@ class HomeScreen(Screen):
         pass
 
     def create_some_screens(self, i):
-        create_screen('settings.kv', 'settings_screen', SettingsScreen)
+        #create_screen('settings.kv', 'settings_screen', SettingsScreen)
         create_screen('detail.kv', 'detail_screen', DetailScreen)
-        create_screen('search.kv', 'search_screen', SearchScreen)
-        create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)
+        #create_screen('search.kv', 'search_screen', SearchScreen)
+        #create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)
+        pass

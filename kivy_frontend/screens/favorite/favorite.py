@@ -76,7 +76,12 @@ class FavoriteScreen(Screen):
     head_height = NumericProperty(70)
     levels = ObjectProperty()
     name = StringProperty()
-     
+
+    def __init__(self, **kwargs):
+        super(FavoriteScreen, self).__init__(**kwargs)
+        print('----------- FavoriteScreen ----------')
+        Clock.schedule_once(self.get_start, 10)
+ 
     def add_levels_widgets(self, i):
 
         ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
@@ -113,11 +118,12 @@ class FavoriteScreen(Screen):
             )
             self.add_widget(self.empty_text)
 
-    def on_enter(self):
-        print('---------------- I am in Favorite screen ---------')
+    #def on_enter(self):
+    def get_start(self, i):
+        print('---------------- I am "get_start" in Favorite screen ---------')
         self.config = MDApp.get_running_app().config
+        #print(self.levels, ' levels')
         Clock.schedule_once(self.add_levels_widgets, .2)
-        Clock.schedule_once(self.create_some_screens, .3)
         DetailScreen.levels = self.levels 
 
     def get_stars_icon(self):
