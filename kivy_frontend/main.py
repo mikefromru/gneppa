@@ -38,10 +38,11 @@ class MainApp(MDApp):
     
     def build(self):
 
-        #self.favorite = FavoriteScreen()
 
         Builder.load_file('main.kv')
         #Builder.load_file('screens/favorite/favorite.kv')
+
+        #self.favorite = FavoriteScreen()
 
         config = self.config
         self.theme = config.get('Settings', 'theme')
@@ -57,6 +58,7 @@ class MainApp(MDApp):
         self.sm = ScreenManager(transition=NoTransition())
         self.sm.add_widget(LoadScreen(name='load_screen'))
         #self.sm.add_widget(FavoriteScreen(name='favorite_screen'))
+
 
         return self.sm
 

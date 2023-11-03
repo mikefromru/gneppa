@@ -59,18 +59,9 @@
             size_hint_y: None
             height: dp(60)
             md_bg_color: app.theme_cls.bg_light 
-#md_bg_color: app.theme_cls.primary_color
-
-#            MDIconButton:
-#                icon: 'arrow-left'
-#                theme_text_color: 'Custom'
-#                text_color: 'white'
-#                pos_hint: {'center_y': .5}
-#                on_release:
-#                    root.manager.transition.direction = 'right'
-#                   root.manager.current = 'home_screen'
 
             MDLabel:
+                id: my_title
                 text: 'Favorites'
                 font_name: 'OpenSans'
                 font_size: '16sp'
@@ -78,10 +69,13 @@
                 #text_color: 'white'
                 bold: True
                 halign: 'center'
+            MDIconButton:
+                icon: 'update'
+                on_release: root.get_start(2)
 
         RecycleView:
             id: rv_favorite
-#data: root.data_from_dataset()
+            #data: root.data_from_dataset()
             scroll_type: ['bars', 'content']
             viewclass: 'MyContainerFavorite'
             effect_cls: 'ScrollEffect'

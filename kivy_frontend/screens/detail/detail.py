@@ -91,23 +91,41 @@ class DetailScreen(Screen):
 
 
     def set_star(self):
-        print(self.level.get('id'), self.level.get('name'))
-        id = self.level.get('id')
-        # convert data of ini file to list type
-        ids = ast.literal_eval(self.config.get('Favorite', 'ids'))
-        if id in ids:
-            ids.remove(id)
+        lst_fav = eval(self.config.get('Favorite', 'ids'))
+        matches = [item for item in lst_fav if item['id'] == self.level.get('id')]
+
+        if len(matches) > 0:
             print('Removed')
+            lst_fav.remove(*matches)
             self.ids.star.icon_color = 'gray'
+            print(lst_fav)
         else:
-            if len(ids) < 10:
-                ids.append(id)
-                print('Added')
-                self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
-            else:
-                MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
-        self.config.set('Favorite', 'ids', ids)
+            print('Added')
+            fav = {'slug': self.level.get('slug'), 'id': self.level.get('id'), 'name': self.level.get('name')}
+            lst_fav.append(fav)
+            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+
+        self.config.set('Favorite', 'ids', lst_fav)
         self.config.write()
+
+#    def set_star(self):
+        #print(self.level.get('id'), self.level.get('name'))
+        #id = self.level.get('id')
+        ## convert data of ini file to list type
+        #ids = ast.literal_eval(self.config.get('Favorite', 'ids'))
+        #if id in ids:
+            #ids.remove(id)
+            #print('Removed')
+            #self.ids.star.icon_color = 'gray'
+        #else:
+            #if len(ids) < 10:
+                #ids.append(id)
+                #self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+            #else:
+                #MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
+        #self.config.set('Favorite', 'ids', ids)
+        #self.config.write()
+
 
     def on_leave(self):
         self.ids.box.clear_widgets()

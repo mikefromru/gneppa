@@ -34,6 +34,8 @@ from screens.detail.detail import DetailScreen
 from screens.vocabulary.vocabulary import VocabularyScreen
 from screens.settings.settings import SettingsScreen
 
+from kivymd.uix.label import MDLabel
+
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
     pass
@@ -82,8 +84,58 @@ class FavoriteScreen(Screen):
     def __init__(self, **kwargs):
         super(FavoriteScreen, self).__init__(**kwargs)
         print('----------- FavoriteScreen ----------')
-        Clock.schedule_interval(self.get_start, 5)
-        #Clock.schedule_once(self.get_start, 3)
+        Clock.schedule_once(self.add_favorites_widgets, .2)
+        #Clock.schedule_interval(self.get_start, 15)
+
+    def add_favorites_widgets(self, i):
+        self.config = MDApp.get_running_app().config
+        favorites_lst = eval(self.config.get('Favorite', 'ids'))
+        DetailScreen.levels = favorites_lst
+        lst = [
+            {
+                #'opacity_': 0,
+                'id': x.get('id'),
+                'name': x.get('name'),
+                'slug': x.get('slug'),
+                ##'icon': x.get('icon'),
+                #'star': 'star' if x.get('id') in ids_favorite else '',
+                #'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
+                #'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
+                } for x in favorites_lst] 
+
+        self.ids.rv_favorite.data = lst
+
+
+
+    #def add_favorites_widgets(self, i):
+
+        #self.config = MDApp.get_running_app().config
+        #DetailScreen.levels = self.levels 
+
+
+        #print('I am working on add widgets ...... ')
+
+        ##self.ids.rv_favorite.data = []
+        
+        #ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
+        #ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
+        #favorite_levels = []
+        #for x in self.levels:
+            #if x.get('id') in ids_favorite:
+                #favorite_levels.append(x)
+        #lst = [
+            #{
+                #'opacity_': 0,
+                #'id': x.get('id'),
+                #'name': x.get('name'),
+                #'slug': x.get('slug'),
+                ##'icon': x.get('icon'),
+                #'star': 'star' if x.get('id') in ids_favorite else '',
+                #'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
+                #'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
+
+                #} for x in favorite_levels] 
+        #self.ids.rv_favorite.data = lst
 
 
     def data_from_dataset(self):
@@ -115,9 +167,9 @@ class FavoriteScreen(Screen):
         return lst
 
 
-    def refresh_recycleview(self, i):
-        #Clock.schedule_once(self.check_empty_favorites, 0.5)
+    def refresh_recycleview(self):
         print('------------ refresh  ------')
+        #print(self.ids.my_title.text)
         self.ids.rv_favorite.data = self.data_from_dataset()
         self.ids.rv_favorite.refresh_from_data()
         
@@ -134,13 +186,15 @@ class FavoriteScreen(Screen):
             self.add_widget(self.empty_text)
 
 
-
     def get_start(self, i):
+
         print('---------------- I am "get_start" in Favorite screen ---------')
         self.config = MDApp.get_running_app().config
-        Clock.schedule_once(self.refresh_recycleview, .2)
-        #Clock.schedule_once(self.add_levels_widgets, .2)
+        #Clock.schedule_once(self.refresh_recycleview, .2)
+        self.refresh_recycleview()
         DetailScreen.levels = self.levels 
+
+        #Clock.schedule_once(self.add_levels_widgets, .2)
 
     def on_kv_post(self, *largs):
         #self.ids.favorites.text = 'Bitch'
@@ -156,19 +210,15 @@ class FavoriteScreen(Screen):
         else:
             self.ids.star.icon_color = 'grey'
 
-    def send_msg(self):
-        var = self.scroll_pos_y
-        print(f'fuck you, bitch {var}')
-    
-    def remove_all(self):
-        print('test test test')
-
     def on_leave(self):
         try:
             self.remove_widget(self.empty_text)
         except:
             pass
 
-    def intro():
+    def intro(self):
         print('------- INTRO ------')
-        FavoriteScreen.get_start('self')
+        #print(self.ids.my_title.text)
+        #Clock.schedule_once(self.get_start, 5)
+        #Clock.schedule_interval(self.get_start, 3)
+
