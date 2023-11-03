@@ -20,6 +20,8 @@ from kivy.network.urlrequest import UrlRequest
 
 # mine
 from screens.home.home import HomeScreen
+from screens.favorite.favorite import FavoriteScreen
+
 from utils.utils import create_screen
 from settings import url
 
@@ -36,9 +38,11 @@ class MainApp(MDApp):
     
     def build(self):
 
+        #self.favorite = FavoriteScreen()
 
         Builder.load_file('main.kv')
-        #Builder.load_file('custom.kv')
+        #Builder.load_file('screens/favorite/favorite.kv')
+
         config = self.config
         self.theme = config.get('Settings', 'theme')
         #self.theme_cls.primary_palette = 'BlueGray'
@@ -52,6 +56,8 @@ class MainApp(MDApp):
         # Some screens
         self.sm = ScreenManager(transition=NoTransition())
         self.sm.add_widget(LoadScreen(name='load_screen'))
+        #self.sm.add_widget(FavoriteScreen(name='favorite_screen'))
+
         return self.sm
 
     def on_start(self):

@@ -49,8 +49,12 @@
 <FavoriteScreen>
     MDBoxLayout:
         orientation: 'vertical'
+#rv_favorite: rv_favorite
+#on_pre_enter: self.refresh_recycleview()
+
 
         MDBoxLayout:
+            rv_favorite: rv_favorite
             orientaiton: 'horizontal'
             size_hint_y: None
             height: dp(60)
@@ -77,6 +81,8 @@
 
         RecycleView:
             id: rv_favorite
+#data: root.data_from_dataset()
+            scroll_type: ['bars', 'content']
             viewclass: 'MyContainerFavorite'
             effect_cls: 'ScrollEffect'
             do_scroll_x: False

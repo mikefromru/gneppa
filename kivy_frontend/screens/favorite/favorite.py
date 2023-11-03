@@ -76,13 +76,20 @@ class FavoriteScreen(Screen):
     head_height = NumericProperty(70)
     levels = ObjectProperty()
     name = StringProperty()
+    demo_test = StringProperty()
+
 
     def __init__(self, **kwargs):
         super(FavoriteScreen, self).__init__(**kwargs)
         print('----------- FavoriteScreen ----------')
-        Clock.schedule_once(self.get_start, 10)
- 
-    def add_levels_widgets(self, i):
+        Clock.schedule_interval(self.get_start, 5)
+        #Clock.schedule_once(self.get_start, 3)
+
+
+    def data_from_dataset(self):
+        print('I am working on add widgets ...... ')
+
+        #self.ids.rv_favorite.data = []
 
         ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
         ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
@@ -104,8 +111,16 @@ class FavoriteScreen(Screen):
                 'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
 
                 } for x in favorite_levels] 
-        self.ids.rv_favorite.data = lst
-        Clock.schedule_once(self.check_empty_favorites, 0.5)
+
+        return lst
+
+
+    def refresh_recycleview(self, i):
+        #Clock.schedule_once(self.check_empty_favorites, 0.5)
+        print('------------ refresh  ------')
+        self.ids.rv_favorite.data = self.data_from_dataset()
+        self.ids.rv_favorite.refresh_from_data()
+        
 
     def check_empty_favorites(self, i):
         ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
@@ -118,13 +133,19 @@ class FavoriteScreen(Screen):
             )
             self.add_widget(self.empty_text)
 
-    #def on_enter(self):
+
+
     def get_start(self, i):
         print('---------------- I am "get_start" in Favorite screen ---------')
         self.config = MDApp.get_running_app().config
-        #print(self.levels, ' levels')
-        Clock.schedule_once(self.add_levels_widgets, .2)
+        Clock.schedule_once(self.refresh_recycleview, .2)
+        #Clock.schedule_once(self.add_levels_widgets, .2)
         DetailScreen.levels = self.levels 
+
+    def on_kv_post(self, *largs):
+        #self.ids.favorites.text = 'Bitch'
+        print('------- ON_KV_POST ----------')
+
 
     def get_stars_icon(self):
         id = self.level.get('id')
@@ -135,8 +156,9 @@ class FavoriteScreen(Screen):
         else:
             self.ids.star.icon_color = 'grey'
 
-    def create_some_screens(self, i):
-        pass
+    def send_msg(self):
+        var = self.scroll_pos_y
+        print(f'fuck you, bitch {var}')
     
     def remove_all(self):
         print('test test test')
@@ -146,3 +168,7 @@ class FavoriteScreen(Screen):
             self.remove_widget(self.empty_text)
         except:
             pass
+
+    def intro():
+        print('------- INTRO ------')
+        FavoriteScreen.get_start('self')

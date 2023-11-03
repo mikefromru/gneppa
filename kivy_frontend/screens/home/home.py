@@ -141,6 +141,7 @@ class HomeScreen(Screen):
 
     
     def on_enter(self):
+        
 
         #print('<<<<<<<< HI  >>>>>>>>>>>')
         self.config = MDApp.get_running_app().config
@@ -174,4 +175,8 @@ class HomeScreen(Screen):
         create_screen('detail.kv', 'detail_screen', DetailScreen)
         #create_screen('search.kv', 'search_screen', SearchScreen)
         #create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)
+        pass
+
+    def comeon(self):
+        #FavoriteScreen.demo_test = 'BITCH'
         pass
