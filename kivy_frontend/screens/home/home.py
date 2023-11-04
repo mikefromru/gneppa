@@ -121,7 +121,9 @@ class HomeScreen(Screen):
         self.menu_settings.dismiss()
      
     def add_levels_widgets(self, i):
-        ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
+        #ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
+        ids_favorite = eval(self.config.get('Favorite', 'ids'))
+        ids_favorite = [x.get('id') for x in ids_favorite]
         ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
 
         lst = [

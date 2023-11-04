@@ -79,14 +79,17 @@ class DetailScreen(Screen):
         self.ids.start_btn.opacity = 1
     
     def get_color_of_star(self, i):
-        id = self.level.get('id')
-        ids = ast.literal_eval(self.config.get('Favorite', 'ids'))
-         
-        if id in ids:
+        lst_fav = eval(self.config.get('Favorite', 'ids'))
+        matches = [item for item in lst_fav if item['id'] == self.level.get('id')]
+
+        if len(matches) > 0:
+            print('Removed')
             self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
         else:
+            print('Added')
+            fav = {'slug': self.level.get('slug'), 'id': self.level.get('id'), 'name': self.level.get('name')}
             self.ids.star.icon_color = 'gray'
-        
+
         self.ids.star.opacity = 1
 
 
@@ -95,37 +98,23 @@ class DetailScreen(Screen):
         matches = [item for item in lst_fav if item['id'] == self.level.get('id')]
 
         if len(matches) > 0:
-            print('Removed')
+            # Remove from favorite
             lst_fav.remove(*matches)
             self.ids.star.icon_color = 'gray'
             print(lst_fav)
         else:
-            print('Added')
-            fav = {'slug': self.level.get('slug'), 'id': self.level.get('id'), 'name': self.level.get('name')}
-            lst_fav.append(fav)
-            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+            # Add to favorite
+            if len(lst_fav) < 10:
+                fav = {'slug': self.level.get('slug'), 'id': self.level.get('id'), 'name': self.level.get('name')}
+                lst_fav.append(fav)
+                self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+            else:
+                MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
+
+
 
         self.config.set('Favorite', 'ids', lst_fav)
         self.config.write()
-
-#    def set_star(self):
-        #print(self.level.get('id'), self.level.get('name'))
-        #id = self.level.get('id')
-        ## convert data of ini file to list type
-        #ids = ast.literal_eval(self.config.get('Favorite', 'ids'))
-        #if id in ids:
-            #ids.remove(id)
-            #print('Removed')
-            #self.ids.star.icon_color = 'gray'
-        #else:
-            #if len(ids) < 10:
-                #ids.append(id)
-                #self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
-            #else:
-                #MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
-        #self.config.set('Favorite', 'ids', ids)
-        #self.config.write()
-
 
     def on_leave(self):
         self.ids.box.clear_widgets()
