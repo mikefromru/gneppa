@@ -18,12 +18,12 @@
 
         MDIcon:
             id: my_star
-            icon: root.star
+            icon: 'star'
             font_size: '22sp'
             theme_text_color: 'Custom'
             text_color: app.theme_cls.primary_dark
             pos_hint: {'center_x': .7, 'center_y': .5}
-            opacity: 0
+            opacity: 1
 
     MDBoxLayout:
         MDLabel:
@@ -69,9 +69,6 @@
                 #text_color: 'white'
                 bold: True
                 halign: 'center'
-            MDIconButton:
-                icon: 'update'
-                on_release: root.get_start(2)
 
         RecycleView:
             id: rv_favorite

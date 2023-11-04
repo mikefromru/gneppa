@@ -1,6 +1,6 @@
 from kivymd.app import MDApp
 from kivy.clock import Clock
-from kivy.properties import NumericProperty, ObjectProperty, ListProperty, StringProperty
+from kivy.properties import NumericProperty, ObjectProperty, ListProperty, StringProperty, BooleanProperty
 
 from kivy.metrics import dp
 from kivy.utils import rgba
@@ -35,6 +35,11 @@ from screens.vocabulary.vocabulary import VocabularyScreen
 from screens.settings.settings import SettingsScreen
 
 from kivymd.uix.label import MDLabel
+
+from kivy.logger import Logger, LOG_LEVELS
+
+Logger.setLevel(LOG_LEVELS["debug"])
+
 
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
@@ -72,6 +77,7 @@ class MyContainerFavorite(ButtonBehavior, MDBoxLayout):
         MDApp.get_running_app().sm.transition.direction = 'left'
         MDApp.get_running_app().sm.current = 'detail_screen'
 
+
 class FavoriteScreen(Screen):
 
     scroll_pos_y = 0
@@ -80,17 +86,58 @@ class FavoriteScreen(Screen):
     name = StringProperty()
     demo_test = StringProperty()
 
-
+    bla = BooleanProperty(True)
+    
     def __init__(self, **kwargs):
+        Logger.debug('Aplication: FavoriteScreen __init__')
         super(FavoriteScreen, self).__init__(**kwargs)
-        print('----------- FavoriteScreen ----------')
-        Clock.schedule_once(self.add_favorites_widgets, .2)
-        #Clock.schedule_interval(self.get_start, 15)
+        self.config = MDApp.get_running_app().config
+        self.fav_event = Clock.schedule_interval(self.get_or_update_favorites_widgets, 2)
+        #self.bla_event = Clock.schedule_interval(self.tutu, 2)
 
-    def add_favorites_widgets(self, i):
+    def tutu(self, i):
+        Logger.debug('Application: tutu() is checking ...')
+        if not self.bla:
+           self.fav_event.cancel() 
+
+
+    def get_or_update_favorites_widgets(self, i):
+        Logger.debug('Application: run get_or_update_favorites_widgets()')
+        favorites_lst = eval(self.config.get('Favorite', 'ids'))
+        if len(favorites_lst) > 0:
+            ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
+            DetailScreen.levels = favorites_lst
+
+            lst = [
+                {
+                    'id': x.get('id'),
+                    'name': x.get('name'),
+                    'slug': x.get('slug'),
+                    'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
+                    } for x in favorites_lst] 
+
+            self.ids.rv_favorite.data = lst
+        else:
+            self.empty_text = MDLabel(
+                text='Empty',
+                halign='center',
+                font_name='OpenSans',
+                font_size='16sp',
+            )
+            self.add_widget(self.empty_text)
+
+           
+
+
+    '''
+
+    def data_from_dataset(self):
+        Logger.debug('Application: data_from_dataset()')
+
         self.config = MDApp.get_running_app().config
         favorites_lst = eval(self.config.get('Favorite', 'ids'))
         DetailScreen.levels = favorites_lst
+
         lst = [
             {
                 #'opacity_': 0,
@@ -103,73 +150,11 @@ class FavoriteScreen(Screen):
                 #'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
                 } for x in favorites_lst] 
 
-        self.ids.rv_favorite.data = lst
-
-
-
-    #def add_favorites_widgets(self, i):
-
-        #self.config = MDApp.get_running_app().config
-        #DetailScreen.levels = self.levels 
-
-
-        #print('I am working on add widgets ...... ')
-
-        ##self.ids.rv_favorite.data = []
-        
-        #ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
-        #ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
-        #favorite_levels = []
-        #for x in self.levels:
-            #if x.get('id') in ids_favorite:
-                #favorite_levels.append(x)
-        #lst = [
-            #{
-                #'opacity_': 0,
-                #'id': x.get('id'),
-                #'name': x.get('name'),
-                #'slug': x.get('slug'),
-                ##'icon': x.get('icon'),
-                #'star': 'star' if x.get('id') in ids_favorite else '',
-                #'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
-                #'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
-
-                #} for x in favorite_levels] 
-        #self.ids.rv_favorite.data = lst
-
-
-    def data_from_dataset(self):
-        print('I am working on add widgets ...... ')
-
-        #self.ids.rv_favorite.data = []
-
-        ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
-        ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
-
-        favorite_levels = []
-        for x in self.levels:
-            if x.get('id') in ids_favorite:
-                favorite_levels.append(x)
-        
-        lst = [
-            {
-                'opacity_': 0,
-                'id': x.get('id'),
-                'name': x.get('name'),
-                'slug': x.get('slug'),
-                #'icon': x.get('icon'),
-                'star': 'star' if x.get('id') in ids_favorite else '',
-                'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
-                'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
-
-                } for x in favorite_levels] 
-
         return lst
 
 
-    def refresh_recycleview(self):
-        print('------------ refresh  ------')
-        #print(self.ids.my_title.text)
+    def refresh_recycleview(self, i):
+        Logger.debug('Application: refresh_recycleview()')
         self.ids.rv_favorite.data = self.data_from_dataset()
         self.ids.rv_favorite.refresh_from_data()
         
@@ -187,19 +172,20 @@ class FavoriteScreen(Screen):
 
 
     def get_start(self, i):
-
-        print('---------------- I am "get_start" in Favorite screen ---------')
+        Logger.debug('Application: get_start()')
         self.config = MDApp.get_running_app().config
         #Clock.schedule_once(self.refresh_recycleview, .2)
-        self.refresh_recycleview()
+        #self.refresh_recycleview()
+
         DetailScreen.levels = self.levels 
 
         #Clock.schedule_once(self.add_levels_widgets, .2)
 
-    def on_kv_post(self, *largs):
-        #self.ids.favorites.text = 'Bitch'
-        print('------- ON_KV_POST ----------')
-
+    def on_kv_post_TMP(self, *largs):
+        Logger.debug('Application: ON_KV_POST()')
+        #self.ids.my_title.text = 'Bitch'
+        Clock.schedule_once(self.get_start, 1)
+        #self.add_favorites_widgets()
 
     def get_stars_icon(self):
         id = self.level.get('id')
@@ -215,10 +201,4 @@ class FavoriteScreen(Screen):
             self.remove_widget(self.empty_text)
         except:
             pass
-
-    def intro(self):
-        print('------- INTRO ------')
-        #print(self.ids.my_title.text)
-        #Clock.schedule_once(self.get_start, 5)
-        #Clock.schedule_interval(self.get_start, 3)
-
+    '''

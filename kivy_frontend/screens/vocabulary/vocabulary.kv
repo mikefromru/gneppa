@@ -12,9 +12,9 @@
             MDIconButton:
                 icon: 'arrow-left'
                 pos_hint: {'center_y': .5}
-                on_release: 
-                    root.manager.transition.direction = 'right'
-                    root.manager.current = 'home_screen'
+                on_release: root.go_back()
+#root.manager.transition.direction = 'right'
+#                    root.manager.current = 'home_screen'
 
             MDLabel:
                 text: 'Vocabulary'
@@ -23,6 +23,7 @@
                 bold: True
        
         ScrollView:
+            id: sc
             effect_cls: 'ScrollEffect'
 
             MDBoxLayout:

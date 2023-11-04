@@ -31,9 +31,9 @@ class SettingsScreen(Screen):
         super(SettingsScreen, self).__init__(**kwargs)
         print('----------- SettingsScreen -------')
         self.config = MDApp.get_running_app().config
-        Clock.schedule_once(self.create_menu, 10)
-        Clock.schedule_once(self.get_window, 11)
-        Clock.schedule_once(self.get_version, 12)
+        Clock.schedule_once(self.create_menu, 1)
+        Clock.schedule_once(self.get_window, 2)
+        Clock.schedule_once(self.get_version, 3)
         
         self.menu_minutes = [
             {

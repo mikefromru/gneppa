@@ -121,9 +121,9 @@ class HomeScreen(Screen):
         self.menu_settings.dismiss()
      
     def add_levels_widgets(self, i):
-        #ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
         ids_favorite = eval(self.config.get('Favorite', 'ids'))
         ids_favorite = [x.get('id') for x in ids_favorite]
+        self.ids.badge.badge_icon = f'numeric-{len(ids_favorite)}'
         ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
 
         lst = [
@@ -143,9 +143,7 @@ class HomeScreen(Screen):
 
     
     def on_enter(self):
-        
-
-        #print('<<<<<<<< HI  >>>>>>>>>>>')
+        print('<<<<<<<< HI  >>>>>>>>>>>')
         self.config = MDApp.get_running_app().config
         Clock.schedule_once(self.add_levels_widgets, .1)
         Clock.schedule_once(self.show_main_box, .2)
@@ -181,4 +179,14 @@ class HomeScreen(Screen):
 
     def comeon(self):
         #FavoriteScreen.demo_test = 'BITCH'
+        pass
+    
+    def intro(self):
+        #FavoriteScreen.bla = False
+        #FavoriteScreen().fav_event.cancel()
+        #FavoriteScreen().get_or_update_favorites_widgets()
+        #fav_screen = FavoriteScreen()
+        
+        #print(fav_screen.ids.my_title.text, 'my_title ')
+        #fav_screen.ids.my_title.text = 'bla-bla-bla'
         pass

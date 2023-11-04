@@ -101,7 +101,6 @@ class DetailScreen(Screen):
             # Remove from favorite
             lst_fav.remove(*matches)
             self.ids.star.icon_color = 'gray'
-            print(lst_fav)
         else:
             # Add to favorite
             if len(lst_fav) < 10:

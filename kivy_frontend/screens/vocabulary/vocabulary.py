@@ -5,11 +5,14 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
 from kivy.metrics import dp
 from kivy.utils import rgba
+from kivy.clock import Clock
 import logging
 from kivy.network.urlrequest import UrlRequest
 from kivy.properties import ObjectProperty
 from settings import url
 from kivymd.uix.snackbar import Snackbar
+
+from threading import Thread
 
 class VocabularyScreen(Screen):
 
@@ -35,6 +38,7 @@ class VocabularyScreen(Screen):
     def success(self, *args):
         result = self.request.result
         self.remove_widget(self.loading)
+        self.ids.sc.scroll_y = 1
 
         for x in result:
             items = MDBoxLayout(
@@ -95,14 +99,15 @@ class VocabularyScreen(Screen):
             timeout=5,
         )
 
-    def go_back(self, instance):
-        try:
-            store = JsonStore("tools/store.json")
-            self.manager.current = store.get('filebrowser')['screen']
-        except:
-            self.manager.current = 'home_screen'
-        self.manager.transition.direction = 'left'
-
-    def on_leave(self, *args):
+    def go_back(self):
         self.ids.box.clear_widgets()
         self.remove_widget(self.loading)
+
+        self.manager.current = 'home_screen'
+        self.manager.transition.direction = 'right'
+
+
+    #def on_leave(self, *args):
+        #Clock.schedule_once(self.clean_it, 1)
+
+
