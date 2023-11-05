@@ -4,7 +4,9 @@ from kivy.properties import NumericProperty, ObjectProperty, ListProperty, Strin
 
 from kivy.metrics import dp
 from kivy.utils import rgba
-import logging
+
+from kivy.logger import Logger, LOG_LEVELS
+
 import ast
 
 from kivy.core.window import Window
@@ -34,6 +36,8 @@ from screens.vocabulary.vocabulary import VocabularyScreen
 from screens.settings.settings import SettingsScreen
 from screens.favorite.favorite import FavoriteScreen
 from screens.search.search import SearchScreen
+
+Logger.setLevel(LOG_LEVELS["debug"])
 
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
@@ -70,7 +74,7 @@ class MyContainer(ButtonBehavior, MDBoxLayout):
         MDApp.get_running_app().sm.current = 'vocabulary_screen'
 
     def on_release(self):
-        logging.info(f'{self.name=}')
+        Logger.debug('Aplication: go to detail_screen')
         DetailScreen.level = {'slug': self.slug, 'id': self.id, 'name': self.name}
         MDApp.get_running_app().sm.transition.direction = 'left'
         MDApp.get_running_app().sm.current = 'detail_screen'

@@ -4,20 +4,18 @@
 
         MDBoxLayout:
             orientation: 'horizontal'
-#adaptive_height: True
             size_hint_y: None
             height: dp(60)
             icon_size: dp(14)
             md_bg_color: app.theme_cls.bg_light
-#md_bg_color: 'red'
 
             MDIconButton:
                 icon: 'arrow-left'
-#theme_icon_color: 'Custom'
-#                icon_color: 'white'
 
                 pos_hint: {'center_y': .5}
-                on_release: root.manager.current = 'home_screen'
+                on_release: 
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'home_screen'
 
             MDLabel:
                 id: tablo
@@ -25,8 +23,6 @@
                 halign: 'right'
                 font_name: 'OpenSans'
                 font_size: '18sp'
-#theme_text_color: 'Custom'
-#text_color: 'white'
                 bold: True
 
         MDFloatLayout:
