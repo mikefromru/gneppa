@@ -84,10 +84,16 @@ class DetailScreen(Screen):
 
         if len(matches) > 0:
             print('Removed')
-            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+            self.ids.star.icon_color = 'yellow'
+            # self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
         else:
             print('Added')
-            fav = {'slug': self.level.get('slug'), 'id': self.level.get('id'), 'name': self.level.get('name')}
+            fav = {
+                    'slug': self.level.get('slug'),
+                    'id': self.level.get('id'),
+                    'name': self.level.get('name'),
+                    'icon': self.level.get('icon'),
+                }
             self.ids.star.icon_color = 'gray'
 
         self.ids.star.opacity = 1
@@ -104,9 +110,15 @@ class DetailScreen(Screen):
         else:
             # Add to favorite
             if len(lst_fav) < 10:
-                fav = {'slug': self.level.get('slug'), 'id': self.level.get('id'), 'name': self.level.get('name')}
+                fav = {
+                        'slug': self.level.get('slug'),
+                        'id': self.level.get('id'),
+                        'name': self.level.get('name'),
+                        'icon': self.level.get('icon'),
+                    }
                 lst_fav.append(fav)
-                self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+                self.ids.star.icon_color = 'yellow'
+                # self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
             else:
                 MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
 

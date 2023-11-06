@@ -9,6 +9,12 @@
     MDBoxLayout:
         size_hint: 1, .5
         orientation: 'horizontal'
+
+        MDIcon:
+            icon: root.icon
+            padding: (dp(0), dp(0), dp(10), dp(0)) if root.icon != '' else (dp(0), dp(0), dp(0), dp(0))
+
+
         MDLabel:
             text: f'{root.name}   [color=455A64]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
             font_name: 'OpenSans'
@@ -21,7 +27,8 @@
             icon: 'star'
             font_size: '22sp'
             theme_text_color: 'Custom'
-            text_color: app.theme_cls.primary_dark
+            # text_color: app.theme_cls.primary_dark
+            text_color: 'yellow'
             pos_hint: {'center_x': .7, 'center_y': .5}
             opacity: 1
 
@@ -37,7 +44,7 @@
         spacing: dp(20)
         orientation: 'horizontal'
         MDRoundFlatIconButton:
-            text: 'Vocabularu'
+            text: 'Vocabulary'
             icon: 'school'
             font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             font_size: '15sp'
@@ -45,6 +52,13 @@
             size_hint: 1, None
             on_release: root.get_vocabulary()
 
+        MDFillRoundFlatButton:
+            text: 'Questions'
+            font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
+            font_size: '15sp'
+            markup: True
+            size_hint: 1, None
+            on_release: root.on_release()
 
 <FavoriteScreen>
     MDBoxLayout:

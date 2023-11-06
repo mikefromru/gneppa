@@ -37,7 +37,6 @@ from screens.settings.settings import SettingsScreen
 from screens.favorite.favorite import FavoriteScreen
 from screens.search.search import SearchScreen
 
-Logger.setLevel(LOG_LEVELS["debug"])
 
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
@@ -75,7 +74,7 @@ class MyContainer(ButtonBehavior, MDBoxLayout):
 
     def on_release(self):
         Logger.debug('Aplication: go to detail_screen')
-        DetailScreen.level = {'slug': self.slug, 'id': self.id, 'name': self.name}
+        DetailScreen.level = {'slug': self.slug, 'id': self.id, 'name': self.name, 'icon': self.icon}
         MDApp.get_running_app().sm.transition.direction = 'left'
         MDApp.get_running_app().sm.current = 'detail_screen'
 
@@ -136,7 +135,7 @@ class HomeScreen(Screen):
                 'id': x.get('id'),
                 'name': x.get('name'),
                 'slug': x.get('slug'),
-                #'icon': x.get('icon'),
+                'icon': '' if x.get('icon') == 'circle' else x.get('icon'),
                 'star': 'star' if x.get('id') in ids_favorite else '',
                 'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
                 'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,

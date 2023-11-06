@@ -25,6 +25,9 @@ from screens.favorite.favorite import FavoriteScreen
 from utils.utils import create_screen
 from settings import url
 
+from kivy.logger import Logger, LOG_LEVELS
+Logger.setLevel(LOG_LEVELS['info'])
+
 __version__ = '1.1'
 
 class LoadScreen(Screen):
@@ -47,7 +50,9 @@ class MainApp(MDApp):
         config = self.config
         self.theme = config.get('Settings', 'theme')
         #self.theme_cls.primary_palette = 'BlueGray'
-        self.theme_cls.primary_palette = 'Orange'
+        #self.theme_cls.primary_palette = 'Orange'
+        #self.theme_cls.primary_palette = 'DeepOrange'
+        self.theme_cls.primary_palette = 'LightBlue'
         self.theme_cls.primary_hue = "900"  # "500"
         #self.theme_cls.theme_style_switch_animation = True
         #self.theme_cls.theme_style_switch_animation_duration = 0.8
@@ -67,11 +72,12 @@ class MainApp(MDApp):
             f'{url}/api/app/all/', 
             on_success=self.success,
             on_error=self.on_error,
-            timeout=5,
+            timeout=20,
         )
 
     #Handle request if there is no connection
     def on_error(self, req, error):
+        print(error)
         Snackbar(MDLabel(
             text='No connection',
             ),
