@@ -9,6 +9,7 @@ from django.core.exceptions import ValidationError
 class Level(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
+    description = models.CharField(null=True, blank=True, max_length=87)
     created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
     slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)

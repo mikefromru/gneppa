@@ -92,6 +92,7 @@ class DetailScreen(Screen):
                     'slug': self.level.get('slug'),
                     'id': self.level.get('id'),
                     'name': self.level.get('name'),
+                    'description': self.level.get('description'),
                     'icon': self.level.get('icon'),
                 }
             self.ids.star.icon_color = 'gray'
@@ -114,6 +115,7 @@ class DetailScreen(Screen):
                         'slug': self.level.get('slug'),
                         'id': self.level.get('id'),
                         'name': self.level.get('name'),
+                        'description': self.level.get('description'),
                         'icon': self.level.get('icon'),
                     }
                 lst_fav.append(fav)

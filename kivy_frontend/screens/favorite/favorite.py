@@ -38,9 +38,6 @@ from kivymd.uix.label import MDLabel
 
 from kivy.logger import Logger
 
-#Logger.setLevel(LOG_LEVELS["info"])
-
-
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
     pass
@@ -57,6 +54,7 @@ class MyContainerFavorite(ButtonBehavior, MDBoxLayout):
     icon = StringProperty('home')
     id = NumericProperty()
     name = StringProperty()
+    description = StringProperty()
     star = StringProperty()
     progress_value = NumericProperty()
     progress_value_opacity = NumericProperty(0)
@@ -104,6 +102,7 @@ class FavoriteScreen(Screen):
             {
                 'id': x.get('id'),
                 'name': x.get('name'),
+                'description': x.get('description'),
                 'slug': x.get('slug'),
                 'icon': '' if x.get('icon') == 'circle' else x.get('icon'),
                 'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
