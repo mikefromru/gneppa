@@ -15,6 +15,7 @@ from kivy.uix.screenmanager import (
 
 from kivy.lang import Builder
 from threading import Thread
+import os
 
 from kivy.network.urlrequest import UrlRequest
 
@@ -28,7 +29,7 @@ from settings import url
 from kivy.logger import Logger, LOG_LEVELS
 Logger.setLevel(LOG_LEVELS['info'])
 
-__version__ = '1.1'
+__version__ = 1.1
 
 class LoadScreen(Screen):
 
@@ -40,7 +41,7 @@ class MainApp(MDApp):
     app_version = __version__
     
     def build(self):
-
+        Logger.info(f'Application: Version is {self.app_version}')
 
         Builder.load_file('main.kv')
         #Builder.load_file('screens/favorite/favorite.kv')
@@ -68,6 +69,7 @@ class MainApp(MDApp):
         return self.sm
 
     def on_start(self):
+
         self.request = UrlRequest(
             f'{url}/api/app/all/', 
             on_success=self.success,
@@ -98,6 +100,8 @@ class MainApp(MDApp):
 
 
     def build_config(self, config):
+
+
         self.config.setdefaults(
             "Settings", {
                 'theme': 'Dark',
@@ -115,7 +119,15 @@ class MainApp(MDApp):
             "Progress", {'progress': {}},
         )
 
+
 if __name__ == '__main__':
+
+    app_version = __version__
+
+    if app_version <= 1.1:
+        # Logger.info(f'Application: clean favorite sector in main.ini file')
+        os.remove('main.ini')
+
     LabelBase.register(name='OpenSans',
         fn_regular='fonts/OpenSans/OpenSans-Regular.ttf',
         fn_italic='fonts/OpenSans/OpenSans-Italic.ttf',

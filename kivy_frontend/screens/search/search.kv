@@ -9,6 +9,11 @@
     MDBoxLayout:
         size_hint: 1, .5
         orientation: 'horizontal'
+        
+        MDIcon:
+            icon: root.icon
+            padding: (dp(0), dp(0), dp(10), dp(0)) if root.icon != '' else (dp(0), dp(0), dp(0), dp(0))
+
         MDLabel:
             text: f'{root.name}   [color=455A64]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
             font_name: 'OpenSans'
@@ -28,7 +33,7 @@
 
     MDBoxLayout:
         MDLabel:
-            text: 'This topic is about crime and other stuff that relative with that'
+            text: root.description
             font_name: 'OpenSans'
             #font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             font_size: '15sp'

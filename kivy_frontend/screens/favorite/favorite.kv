@@ -63,9 +63,6 @@
 <FavoriteScreen>
     MDBoxLayout:
         orientation: 'vertical'
-#rv_favorite: rv_favorite
-#on_pre_enter: self.refresh_recycleview()
-
 
         MDBoxLayout:
             rv_favorite: rv_favorite
@@ -79,14 +76,11 @@
                 text: 'Favorites'
                 font_name: 'OpenSans'
                 font_size: '16sp'
-                #theme_text_color: 'Custom'
-                #text_color: 'white'
                 bold: True
                 halign: 'center'
 
         RecycleView:
             id: rv_favorite
-            #data: root.data_from_dataset()
             scroll_type: ['bars', 'content']
             viewclass: 'MyContainerFavorite'
             effect_cls: 'ScrollEffect'

@@ -30,6 +30,7 @@ class MyContainerSearch(ButtonBehavior, MDBoxLayout):
     icon = StringProperty()
     id = NumericProperty()
     name = StringProperty()
+    description = StringProperty()
     star = StringProperty()
     progress_value = NumericProperty()
     progress_value_opacity = NumericProperty(0)
@@ -50,7 +51,12 @@ class MyContainerSearch(ButtonBehavior, MDBoxLayout):
 
     def on_release(self):
         logging.info(f'{self.name=}')
-        DetailScreen.level = {'slug': self.slug, 'id': self.id, 'name': self.name}
+        DetailScreen.level = {
+            'slug': self.slug, 
+            'id': self.id, 
+            'name': self.name,
+            'description': self.description,
+            }
         MDApp.get_running_app().sm.transition.direction = 'left'
         MDApp.get_running_app().sm.current = 'detail_screen'
 
@@ -60,7 +66,6 @@ class SearchScreen(Screen):
         super(SearchScreen, self).__init__(**kwargs)
         Window.bind(on_keyboard=self.goBackWindow)
         self.config = MDApp.get_running_app().config
-        print('--------- from SearchScreen ------')
     
     def on_enter(self):
         self.config = MDApp.get_running_app().config
@@ -71,14 +76,6 @@ class SearchScreen(Screen):
     def goBackWindow(self, window, key, *args):
         if key == 13:
             self.callback(self)
-
-    def go_home(self):
-        #s = self.manager.get_screen('home_screen')
-        #s = MDApp.get_running_app().sm.get_screen = 'home_screen'
-        #s.ids.bottom_nav.switch_tab('home_screen')
-        #self.manager.current = 'home_screen'
-        #MDApp.get_running_app().sm.current = 'settings_screen'
-        pass
 
     def callback(self, instance):
         instance = self.ids.name
@@ -100,7 +97,8 @@ class SearchScreen(Screen):
                     'id': x.get('id'),
                     'name': x.get('name'),
                     'slug': x.get('slug'),
-                    #'icon': x.get('icon'),
+                    'icon': x.get('icon'),
+                    'description': x.get('description'),
                     'star': 'star' if x.get('id') in ids_favorite else '',
                     'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
                     'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,

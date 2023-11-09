@@ -29,7 +29,6 @@ class SettingsScreen(Screen):
 
     def __init__(self, **kwargs):
         super(SettingsScreen, self).__init__(**kwargs)
-        print('----------- SettingsScreen -------')
         self.config = MDApp.get_running_app().config
         Clock.schedule_once(self.create_menu, 1)
         Clock.schedule_once(self.get_window, 2)
@@ -72,8 +71,8 @@ class SettingsScreen(Screen):
         current_year = datetime.date.today().year
         msg = f'(c) 2022-{current_year}. MFR'
         self.ids.fromtoyear.text = msg
-        number_string = MDApp.get_running_app().app_version
-        self.ids.app_version.text =  'Version ' + number_string
+        app_version= MDApp.get_running_app().app_version
+        self.ids.app_version.text =  'Version ' + str(app_version)
         #Clock.schedule_once(self.get_window, 0.1)
 
     def get_window(self, i):
