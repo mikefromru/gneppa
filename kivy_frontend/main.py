@@ -50,10 +50,10 @@ class MainApp(MDApp):
 
         config = self.config
         self.theme = config.get('Settings', 'theme')
-        #self.theme_cls.primary_palette = 'BlueGray'
+        # self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.primary_palette = 'LightBlue'
         #self.theme_cls.primary_palette = 'Orange'
         #self.theme_cls.primary_palette = 'DeepOrange'
-        self.theme_cls.primary_palette = 'LightBlue'
         self.theme_cls.primary_hue = "900"  # "500"
         #self.theme_cls.theme_style_switch_animation = True
         #self.theme_cls.theme_style_switch_animation_duration = 0.8
