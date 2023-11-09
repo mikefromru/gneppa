@@ -85,23 +85,11 @@ class MainApp(MDApp):
             ),
         ).open()
 
-    #def success(self, *args):
     def success(self, req, result):
         HomeScreen.levels = [x for x in result if x['approved'] == True]
         self.sm.current = 'home_screen'
 
-#    def get_data(self):
-        #for x in range(50000):
-            #print(x)
-        #Clock.schedule_interval(self.go_to_app, 1)
-
-    #def go_to_app(self, i):
-        #self.sm.current = 'home_screen'
-
-
     def build_config(self, config):
-
-
         self.config.setdefaults(
             "Settings", {
                 'theme': 'Dark',
@@ -110,7 +98,6 @@ class MainApp(MDApp):
                 'sound': True,
             }
         )
-
         self.config.setdefaults(
             "Favorite", {'ids': []},
         )
@@ -121,19 +108,11 @@ class MainApp(MDApp):
 
 
 if __name__ == '__main__':
-
-    app_version = __version__
-
-    if app_version <= 1.1:
-        # Logger.info(f'Application: clean favorite sector in main.ini file')
-        os.remove('main.ini')
-
     LabelBase.register(name='OpenSans',
         fn_regular='fonts/OpenSans/OpenSans-Regular.ttf',
         fn_italic='fonts/OpenSans/OpenSans-Italic.ttf',
         fn_bold='fonts/OpenSans/OpenSans-Bold.ttf',
     )
-
     MainApp().run()
 
     

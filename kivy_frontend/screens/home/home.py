@@ -35,6 +35,7 @@ from screens.detail.detail import DetailScreen
 from screens.vocabulary.vocabulary import VocabularyScreen
 from screens.settings.settings import SettingsScreen
 from screens.favorite.favorite import FavoriteScreen
+from screens.about.about import AboutScreen
 from screens.search.search import SearchScreen
 
 
@@ -90,26 +91,33 @@ class HomeScreen(Screen):
         super().__init__(**kwargs)
         self.loading = MDLabel(text='Loading ...', halign='center')
         self.add_widget(self.loading)
-        dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
+        dct_settings = {'About it': 'information-variant', 'tmp': ''}
+        # dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
 
-#        menu_settings_items = [
-                #{
-                    #"text": f"{i}",
-                    #"leading_icon": dct_settings[i],
-                    #'leading_icon_color': MDApp.get_running_app().theme_cls.primary_dark,
-                    #"on_release": lambda x=f"{i}": self.menu_settings_callback(x),
-                    #} for i in dct_settings
-            #]
+        menu_settings_items = [
+                {
+                    "text": f"{i}",
+                    "leading_icon": dct_settings[i],
+                    'leading_icon_color': MDApp.get_running_app().theme_cls.primary_dark,
+                    "on_release": lambda x=f"{i}": self.menu_settings_callback(x),
+                    } for i in dct_settings
+            ]
 
-        #self.menu_settings = MDDropdownMenu(
-            #header_cls=MenuHeader(),
-            #caller=self.ids.settings_menu,
-            #items=menu_settings_items,
-            #width_mult=2,
-        #)
+        self.menu_settings = MDDropdownMenu(
+            header_cls=MenuHeader(),
+            caller=self.ids.settings_menu,
+            items=menu_settings_items,
+            width_mult=2,
+        )
 
 
     def menu_settings_callback(self, text_item):
+
+        if text_item == 'About it':
+            create_screen('about.kv', 'about_screen', AboutScreen)
+            MDApp.get_running_app().sm.transition.direction = 'left'
+            MDApp.get_running_app().sm.current = 'about_screen'
+        '''
         if text_item == 'Favorite':
             create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)
             FavoriteScreen.levels = self.levels
@@ -120,8 +128,7 @@ class HomeScreen(Screen):
         elif text_item == 'Settings':
             create_screen('settings.kv', 'settings_screen', SettingsScreen)
             MDApp.get_running_app().sm.current = 'settings_screen'
-
-        #MDApp.get_running_app().sm.transition.direction = 'left'
+        '''
         self.menu_settings.dismiss()
      
     def add_levels_widgets(self, i):
@@ -148,7 +155,6 @@ class HomeScreen(Screen):
 
     
     def on_enter(self):
-        print('<<<<<<<< HI  >>>>>>>>>>>')
         self.config = MDApp.get_running_app().config
         Clock.schedule_once(self.add_levels_widgets, .1)
         Clock.schedule_once(self.show_main_box, .2)
