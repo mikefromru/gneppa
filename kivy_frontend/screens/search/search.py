@@ -55,6 +55,7 @@ class MyContainerSearch(ButtonBehavior, MDBoxLayout):
             'slug': self.slug, 
             'id': self.id, 
             'name': self.name,
+            'icon': self.icon,
             'description': self.description,
             }
         MDApp.get_running_app().sm.transition.direction = 'left'
@@ -88,7 +89,8 @@ class SearchScreen(Screen):
                 if x['approved']:
                     levels.append(x)
                 
-            ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
+            ids_favorite = eval(self.config.get('Favorite', 'ids'))
+            ids_favorite = [x.get('id') for x in ids_favorite]
             ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
 
             lst = [
@@ -97,7 +99,7 @@ class SearchScreen(Screen):
                     'id': x.get('id'),
                     'name': x.get('name'),
                     'slug': x.get('slug'),
-                    'icon': x.get('icon'),
+                    'icon': '' if x.get('icon') == 'circle' else x.get('icon'),
                     'description': x.get('description'),
                     'star': 'star' if x.get('id') in ids_favorite else '',
                     'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
