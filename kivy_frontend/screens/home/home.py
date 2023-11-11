@@ -134,7 +134,7 @@ class HomeScreen(Screen):
     def add_levels_widgets(self, i):
         ids_favorite = eval(self.config.get('Favorite', 'ids'))
         ids_favorite = [x.get('id') for x in ids_favorite]
-        self.ids.badge.badge_icon = f'numeric-{len(ids_favorite)}'
+        # self.ids.badge.badge_icon = f'numeric-{len(ids_favorite)}'
         ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
 
         lst = [

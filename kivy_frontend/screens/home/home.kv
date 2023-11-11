@@ -58,6 +58,7 @@
         MDIcon:
             icon: root.icon
             padding: (dp(0), dp(0), dp(10), dp(0)) if root.icon != '' else (dp(0), dp(0), dp(0), dp(0))
+            theme_text_color: 'Secondary'
 
         MDLabel:
             text: f'{root.name}   [color=8F8F8F]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
@@ -100,6 +101,23 @@
         padding: [dp(0), dp(0), dp(0), dp(10)]
         spacing: dp(20)
         orientation: 'horizontal'
+
+        # MDChip:
+        #     md_bg_color: app.theme_cls.bg_darkest
+        #     MDChipLeadingIcon:
+        #         icon: 'school'
+        #         theme_text_color: "Custom"
+        #         text_color: app.theme_cls.primary_color
+
+        #     MDChipText:
+        #         text: 'Vocabulary'
+
+        # MDChip:
+        #     md_bg_color: app.theme_cls.bg_darkest
+        #     MDChipText:
+        #         text: '3%'
+
+
         MDRoundFlatIconButton:
             text: 'Vocabulary'
             icon: 'school'
@@ -127,7 +145,6 @@
 <HomeScreen>
     MDBoxLayout:
         orientation: 'vertical'
-
 
         MDBoxLayout:
             orientaiton: 'horizontal'
@@ -195,10 +212,10 @@
                     padding: (dp(10), dp(0), dp(0), dp(0))
                     md_bg_color: app.theme_cls.bg_light 
 #md_bg_color: app.theme_cls.primary_color 
-#Image:
-#                        source: 'i/logo/icon.jpg'
-#                        allow_stretch: True
-#                        size_hint_x: 0.2
+                    Image:
+                        source: 'i/logo/icon.png'
+                        allow_stretch: True
+                        size_hint_x: 0.2
 
                     MDLabel:
                         text: 'Gneppa'

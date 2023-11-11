@@ -13,7 +13,7 @@
         MDIcon:
             icon: root.icon
             padding: (dp(0), dp(0), dp(10), dp(0)) if root.icon != '' else (dp(0), dp(0), dp(0), dp(0))
-
+            theme_text_color: 'Secondary'
 
         MDLabel:
             text: f'{root.name}   [color=455A64]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
