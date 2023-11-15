@@ -44,19 +44,13 @@ class MainApp(MDApp):
         Logger.info(f'Application: Version is {self.app_version}')
 
         Builder.load_file('main.kv')
-        #Builder.load_file('screens/favorite/favorite.kv')
 
-        #self.favorite = FavoriteScreen()
 
         config = self.config
         self.theme = config.get('Settings', 'theme')
         # self.theme_cls.primary_palette = 'BlueGray'
         self.theme_cls.primary_palette = 'LightBlue'
-        #self.theme_cls.primary_palette = 'Orange'
-        #self.theme_cls.primary_palette = 'DeepOrange'
         self.theme_cls.primary_hue = "900"  # "500"
-        #self.theme_cls.theme_style_switch_animation = True
-        #self.theme_cls.theme_style_switch_animation_duration = 0.8
 
         MDApp.get_running_app().theme_cls.theme_style = self.theme
 
@@ -64,7 +58,6 @@ class MainApp(MDApp):
         #self.sm = ScreenManager(transition=NoTransition())
         self.sm = ScreenManager()
         self.sm.add_widget(LoadScreen(name='load_screen'))
-        #self.sm.add_widget(FavoriteScreen(name='favorite_screen'))
 
         return self.sm
 
