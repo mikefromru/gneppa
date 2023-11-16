@@ -4,6 +4,8 @@ from kivy.clock import Clock
 from kivy.core.text import LabelBase
 from kivymd.uix.snackbar import Snackbar
 
+from kivymd.uix.spinner.spinner import MDSpinner
+
 from kivy.uix.screenmanager import (
     ScreenManager, 
     Screen,
@@ -36,6 +38,9 @@ class LoadScreen(Screen):
     def on_enter(self):
         create_screen('home.kv', 'home_screen', HomeScreen)
 
+    def on_leave(self):
+        self.ids.my_spinner.active = False
+
 class MainApp(MDApp):
 
     app_version = __version__
@@ -44,7 +49,6 @@ class MainApp(MDApp):
         Logger.info(f'Application: Version is {self.app_version}')
 
         Builder.load_file('main.kv')
-
 
         config = self.config
         self.theme = config.get('Settings', 'theme')
@@ -69,6 +73,7 @@ class MainApp(MDApp):
             on_error=self.on_error,
             timeout=20,
         )
+
 
     #Handle request if there is no connection
     def on_error(self, req, error):

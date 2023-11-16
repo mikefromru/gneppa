@@ -18,6 +18,7 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
 from kivymd.uix.gridlayout import MDGridLayout
+from kivymd.uix.spinner.spinner import MDSpinner
 from kivymd.uix.list import (
     IRightBodyTouch, 
     OneLineAvatarIconListItem,
@@ -38,6 +39,7 @@ from screens.favorite.favorite import FavoriteScreen
 from screens.about.about import AboutScreen
 from screens.search.search import SearchScreen
 
+from threading import Thread
 
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
@@ -89,8 +91,9 @@ class HomeScreen(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.loading = MDLabel(text='Loading ...', halign='center')
-        self.add_widget(self.loading)
+        # self.loading = MDLabel(text='Loading ...', halign='center')
+        # self.add_widget(self.loading)
+        # Clock.schedule_once(self.spinit, .1)
         dct_settings = {'About it': 'information-variant', 'tmp': ''}
         # dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
 
@@ -109,6 +112,11 @@ class HomeScreen(Screen):
             items=menu_settings_items,
             width_mult=2,
         )
+
+    def spinit(self, i):
+        # self.loading = MDSpinner(size_hint=(None, None), size=(48, 48), pos_hint={'center_x': .5, 'center_y': .5}, determinate=True)
+        self.loading = MDSpinner(size_hint=(None, None), size=(48, 48), pos_hint={'center_x': .5, 'center_y': .5})
+        self.add_widget(self.loading)
 
 
     def menu_settings_callback(self, text_item):
@@ -152,13 +160,15 @@ class HomeScreen(Screen):
                 } for x in self.levels] 
 
         self.ids.rv.data = lst
+            
+
 
     
     def on_enter(self):
         self.config = MDApp.get_running_app().config
-        Clock.schedule_once(self.add_levels_widgets, .1)
-        Clock.schedule_once(self.show_main_box, .2)
-        Clock.schedule_once(self.create_some_screens, .4)
+        Clock.schedule_once(self.add_levels_widgets, .1) #.1
+        Clock.schedule_once(self.show_main_box, .2) # .2
+        Clock.schedule_once(self.create_some_screens, .4) #.4
         DetailScreen.levels = self.levels 
         FavoriteScreen.levels = self.levels 
 
@@ -172,8 +182,12 @@ class HomeScreen(Screen):
             self.ids.star.icon_color = 'red'
         
     def show_main_box(self, i):
+        # if not self.loading.active:
         self.ids.main_box.opacity = 1
-        self.remove_widget(self.loading)
+        # else:
+            # print('Fuck you')
+        # self.loading.active = False
+        # self.remove_widget(self.loading)
 
     def create_some_screens(self, i):
         #create_screen('settings.kv', 'settings_screen', SettingsScreen)

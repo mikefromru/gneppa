@@ -211,7 +211,7 @@
                     height: dp(60)
                     padding: (dp(10), dp(0), dp(0), dp(0))
                     md_bg_color: app.theme_cls.bg_light 
-#md_bg_color: app.theme_cls.primary_color 
+                    #md_bg_color: app.theme_cls.primary_color 
                     Image:
                         source: 'i/logo/icon.png'
                         allow_stretch: True
@@ -246,15 +246,12 @@
                             root.menu_settings.open()
                             root.manager.transition.direction = 'left'
 
-
-
                 RecycleView:
                     id: rv
                     viewclass: 'MyContainer'
                     effect_cls: 'ScrollEffect'
                     do_scroll_x: False
                     do_scroll_y: True
-                    
                     
                     RecycleBoxLayout:
                         id: main_box
