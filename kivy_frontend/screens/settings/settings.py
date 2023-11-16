@@ -68,11 +68,12 @@ class SettingsScreen(Screen):
 
     #def on_enter(self):
     def get_version(self, i):
-        current_year = datetime.date.today().year
-        msg = f'(c) 2022-{current_year}. MFR'
-        self.ids.fromtoyear.text = msg
         app_version= MDApp.get_running_app().app_version
-        self.ids.app_version.text =  'Version ' + str(app_version)
+        current_year = datetime.date.today().year
+        msg = f'Version {app_version} (c) 2022-{current_year}. MFR'
+        self.ids.fromtoyear.text = msg
+        # self.ids.app_version.text =  'Version ' + str(app_version)
+
         #Clock.schedule_once(self.get_window, 0.1)
 
     def get_window(self, i):
