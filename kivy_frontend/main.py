@@ -52,7 +52,6 @@ class MainApp(MDApp):
 
         config = self.config
         self.theme = config.get('Settings', 'theme')
-        # self.theme_cls.primary_palette = 'BlueGray'
         self.theme_cls.primary_palette = 'LightBlue'
         self.theme_cls.primary_hue = "900"  # "500"
 

@@ -18,7 +18,6 @@
         MDLabel:
             text: f'{root.name}   [color=455A64]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
             font_name: 'OpenSans'
-            #font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             font_size: '15sp'
             markup: True
             bold: True
@@ -36,7 +35,6 @@
         MDLabel:
             text: root.description
             font_name: 'OpenSans'
-            #font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             font_size: '15sp'
             markup: True
 
@@ -51,6 +49,7 @@
             font_size: '15sp'
             markup: True
             size_hint: 1, None
+            on_release: root.get_vocabulary()
 
         MDFillRoundFlatButton:
             text: 'Questions'
@@ -58,6 +57,7 @@
             font_size: '15sp'
             markup: True
             size_hint: 1, None
+            on_release: root.on_release()
 
 <SearchScreen>
 
@@ -71,14 +71,6 @@
             
             MDIconButton:
                 icon: ''
-#            MDIconButton:
-#                icon: 'arrow-left'
-#pos_hint: {'center_y': .5}
-                #theme_icon_color: 'Custom'
-                #icon_color: 'white'
-#on_release: root.go_home()
-                    #root.manager.transition.direction = 'right'
-                    #root.manager.current = 'home_screen'
 
             MDTextField:
                 id: name

@@ -72,9 +72,6 @@ class SettingsScreen(Screen):
         current_year = datetime.date.today().year
         msg = f'Version {app_version} (c) 2022-{current_year}. MFR'
         self.ids.fromtoyear.text = msg
-        # self.ids.app_version.text =  'Version ' + str(app_version)
-
-        #Clock.schedule_once(self.get_window, 0.1)
 
     def get_window(self, i):
         self.minutes = self.config.getint('Settings', 'minutes')

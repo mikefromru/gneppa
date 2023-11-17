@@ -93,10 +93,7 @@ class HomeScreen(Screen):
         super().__init__(**kwargs)
         self.loading = MDLabel(text='Loading ...', halign='center', theme_text_color='Hint')
         self.add_widget(self.loading)
-        # Clock.schedule_once(self.spinit, .1)
         dct_settings = {'About it': 'information-variant', 'tmp': ''}
-        # dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
-
 
         menu_settings_items = [
                 {
@@ -114,30 +111,13 @@ class HomeScreen(Screen):
             width_mult=2,
         )
 
-    def spinit(self, i):
-        # self.loading = MDSpinner(size_hint=(None, None), size=(48, 48), pos_hint={'center_x': .5, 'center_y': .5}, determinate=True)
-        self.loading = MDSpinner(size_hint=(None, None), size=(48, 48), pos_hint={'center_x': .5, 'center_y': .5})
-        self.add_widget(self.loading)
-
-
     def menu_settings_callback(self, text_item):
 
         if text_item == 'About it':
             create_screen('about.kv', 'about_screen', AboutScreen)
             MDApp.get_running_app().sm.transition.direction = 'left'
             MDApp.get_running_app().sm.current = 'about_screen'
-        '''
-        if text_item == 'Favorite':
-            create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)
-            FavoriteScreen.levels = self.levels
-            MDApp.get_running_app().sm.current = 'favorite_screen'
-        elif text_item == 'Search':
-            create_screen('search.kv', 'search_screen', SearchScreen)
-            MDApp.get_running_app().sm.current = 'search_screen'
-        elif text_item == 'Settings':
-            create_screen('settings.kv', 'settings_screen', SettingsScreen)
-            MDApp.get_running_app().sm.current = 'settings_screen'
-        '''
+
         self.menu_settings.dismiss()
      
     def add_levels_widgets(self, i):
@@ -181,15 +161,11 @@ class HomeScreen(Screen):
             self.ids.star.icon_color = 'red'
         
     def show_main_box(self, i):
-        # if not self.loading.active:
         self.ids.main_box.opacity = 1
-        # else:
-            # print('Fuck you')
-        # self.loading.active = False
         self.remove_widget(self.loading)
 
     def create_some_screens(self, i):
-        #create_screen('settings.kv', 'settings_screen', SettingsScreen)
         create_screen('detail.kv', 'detail_screen', DetailScreen)
+        #create_screen('settings.kv', 'settings_screen', SettingsScreen)
         #create_screen('search.kv', 'search_screen', SearchScreen)
         #create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)

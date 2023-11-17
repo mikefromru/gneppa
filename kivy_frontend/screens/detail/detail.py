@@ -65,7 +65,6 @@ class DetailScreen(Screen):
                 width=dp(0),
                 )
             )
-            #bl.add_widget(MDLabel(text=f"[b][color=009688]{j}.[/color][/b] [size=14sp]{x.get('name')}?[/size]", 
             bl.add_widget(MDLabel(text=f"[b]{j}.[/b] [size=14sp]{x.get('name')}?[/size]", 
                 valign='center',
                 padding_x=dp(0), 
@@ -118,12 +117,9 @@ class DetailScreen(Screen):
                         'icon': self.level.get('icon'),
                     }
                 lst_fav.append(fav)
-                # self.ids.star.icon_color = 'yellow'
                 self.ids.star.icon_color = MDApp.get_running_app().theme_cls.accent_light
             else:
                 MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
-
-
 
         self.config.set('Favorite', 'ids', lst_fav)
         self.config.write()

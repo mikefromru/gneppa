@@ -1,51 +1,30 @@
 from kivymd.app import MDApp
 from kivy.clock import Clock
-from kivy.properties import NumericProperty, ObjectProperty, ListProperty, StringProperty, BooleanProperty
+from kivy.properties import NumericProperty, ObjectProperty, StringProperty, BooleanProperty
 
-from kivy.metrics import dp
-from kivy.utils import rgba
 import logging
 import ast
 
-from kivy.core.window import Window
-from kivymd.uix.list import OneLineListItem
-from kivymd.uix.button import MDFlatButton
-from kivymd.uix.snackbar import Snackbar
-from kivy.uix.screenmanager import Screen, NoTransition
+from kivy.uix.screenmanager import Screen
 from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.label import MDLabel
-from kivymd.uix.button import MDIconButton
-from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.list import (
     IRightBodyTouch, 
-    OneLineAvatarIconListItem,
-    OneLineIconListItem,
-    TwoLineRightIconListItem,
-    OneLineAvatarIconListItem,
-    OneLineRightIconListItem,
-    OneLineAvatarListItem,
 )
-from kivymd.uix.menu import MDDropdownMenu
 
 # main
 from utils.utils import create_screen
 from screens.detail.detail import DetailScreen
 from screens.vocabulary.vocabulary import VocabularyScreen
-from screens.settings.settings import SettingsScreen
-
-from kivymd.uix.label import MDLabel
 
 from kivy.logger import Logger
 
-class RightContainer(IRightBodyTouch, MDBoxLayout):
 
+class RightContainer(IRightBodyTouch, MDBoxLayout):
     pass
 
 class MenuHeader(MDBoxLayout):
-
     pass
-
 
 class MyContainerFavorite(ButtonBehavior, MDBoxLayout):
 
