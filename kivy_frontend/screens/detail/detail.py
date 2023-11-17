@@ -84,8 +84,7 @@ class DetailScreen(Screen):
 
         if len(matches) > 0:
             print('Removed')
-            self.ids.star.icon_color = 'yellow'
-            # self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+            self.ids.star.icon_color = MDApp.get_running_app().theme_cls.accent_light
         else:
             print('Added')
             fav = {
@@ -119,8 +118,8 @@ class DetailScreen(Screen):
                         'icon': self.level.get('icon'),
                     }
                 lst_fav.append(fav)
-                self.ids.star.icon_color = 'yellow'
-                # self.ids.star.icon_color = MDApp.get_running_app().theme_cls.primary_dark
+                # self.ids.star.icon_color = 'yellow'
+                self.ids.star.icon_color = MDApp.get_running_app().theme_cls.accent_light
             else:
                 MDSnackbar(MDLabel(text='You can have only 10 favorite topics')).open()
 

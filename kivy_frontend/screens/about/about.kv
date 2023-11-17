@@ -3,6 +3,7 @@
     MDBoxLayout:
         orientation: 'vertical'
         padding: (dp(10), dp(30), dp(10), dp(0))
+        
         Image:
             source: 'i/logo/icon.png'
 
@@ -14,6 +15,7 @@
         MDFillRoundFlatIconButton:
             text: 'Go back'
             icon: 'home'
+            font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             pos_hint: {"center_x": .5}
             on_release: 
                 root.manager.transition.direction = 'right'
@@ -21,4 +23,7 @@
 
         MDLabel:
             text: 'Version ' + str(app.app_version)
+            font_name: 'OpenSans'
+            font_size: '12sp'
+            theme_text_color: 'Secondary'
             halign: 'center'

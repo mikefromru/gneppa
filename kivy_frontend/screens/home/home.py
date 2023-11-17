@@ -91,11 +91,12 @@ class HomeScreen(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # self.loading = MDLabel(text='Loading ...', halign='center')
-        # self.add_widget(self.loading)
+        self.loading = MDLabel(text='Loading ...', halign='center', theme_text_color='Hint')
+        self.add_widget(self.loading)
         # Clock.schedule_once(self.spinit, .1)
         dct_settings = {'About it': 'information-variant', 'tmp': ''}
         # dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
+
 
         menu_settings_items = [
                 {
@@ -160,10 +161,8 @@ class HomeScreen(Screen):
                 } for x in self.levels] 
 
         self.ids.rv.data = lst
-            
 
 
-    
     def on_enter(self):
         self.config = MDApp.get_running_app().config
         Clock.schedule_once(self.add_levels_widgets, .1) #.1
@@ -187,7 +186,7 @@ class HomeScreen(Screen):
         # else:
             # print('Fuck you')
         # self.loading.active = False
-        # self.remove_widget(self.loading)
+        self.remove_widget(self.loading)
 
     def create_some_screens(self, i):
         #create_screen('settings.kv', 'settings_screen', SettingsScreen)

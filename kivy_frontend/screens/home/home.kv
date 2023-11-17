@@ -26,34 +26,12 @@
     size_hint_y: None
     orientation: 'vertical'
     padding: (dp(10), dp(10), dp(7), dp(0))
-#orientation: 'horizontal'
     md_bg_color: app.theme_cls.bg_light
     radius: dp(10)
-
-    
-#MDBoxLayout:
-#        orientation: 'vertical'
-#        spacing: dp(20)
-#        size_hint_y: None
-#        padding_y: dp(0)
-
-#MDIcon:
-            #icon: 'circle-small'
-#            icon: 'home'
-            #icon: root.icon
-#            theme_text_color: 'Custom'
-            #text_color: '#325477'
-#            text_color: app.theme_cls.primary_dark
-#            font_size: '30sp'
-#            padding_x: dp(10)
-#            pos_hint: {'center_y': .5}
 
     MDBoxLayout:
         size_hint: 1, .5
         orientation: 'horizontal'
-#md_bg_color: 'gray'
-#size_hint: 1, 1
-#spacing: dp(20) if root.star != 'circle' else dp(0)
 
         MDIcon:
             icon: root.icon
@@ -63,7 +41,6 @@
         MDLabel:
             text: f'{root.name}   [color=8F8F8F]{root.progress_value}%[/color]' if int(root.progress_value) >= 3 else f'{root.name}'
             font_name: 'OpenSans'
-            #font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             font_size: '15sp'
             markup: True
             bold: True
@@ -73,50 +50,22 @@
             icon: root.star
             font_size: '22sp'
             theme_text_color: 'Custom'
-            text_color: 'yellow'
-            # text_color: app.theme_cls.primary_dark
+            text_color: app.theme_cls.accent_light
             pos_hint: {'center_x': .7, 'center_y': .5}
             opacity: 0
 
     MDBoxLayout:
-#size_hint: 1, None
-#md_bg_color: 'purple'
-#size_hint: 1, 1
         MDLabel:
             text: root.description
             font_name: 'OpenSans'
             theme_text_color: 'Secondary'
-#font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
             font_size: '15sp'
             markup: True
-
-#MDIconButton:
-#            icon: 'dots-vertical'
-#            icon_size: dp(15)
-#            theme_icon_color: 'Hint'
-#            pos_hint: {'center_y': .5, 'center_x': .7}
-#            on_release: root.get_vocabulary()
 
     MDBoxLayout:
         padding: [dp(0), dp(0), dp(0), dp(10)]
         spacing: dp(20)
         orientation: 'horizontal'
-
-        # MDChip:
-        #     md_bg_color: app.theme_cls.bg_darkest
-        #     MDChipLeadingIcon:
-        #         icon: 'school'
-        #         theme_text_color: "Custom"
-        #         text_color: app.theme_cls.primary_color
-
-        #     MDChipText:
-        #         text: 'Vocabulary'
-
-        # MDChip:
-        #     md_bg_color: app.theme_cls.bg_darkest
-        #     MDChipText:
-        #         text: '3%'
-
 
         MDRoundFlatIconButton:
             text: 'Vocabulary'
@@ -137,63 +86,7 @@
                 #root.manager.transition.direction = 'right'
                 #root.manager.current = 'home_screen'
 
-
-
-    
-
-
 <HomeScreen>
-    MDBoxLayout:
-        orientation: 'vertical'
-
-        MDBoxLayout:
-            orientaiton: 'horizontal'
-            size_hint_y: None
-            height: dp(60)
-            padding: (dp(10), dp(0), dp(0), dp(0))
-            md_bg_color: app.theme_cls.primary_color 
-            Image:
-                source: 'i/logo/icon.jpg'
-                allow_stretch: True
-                size_hint_x: 0.2
-
-
-#md_bg_color: app.theme_cls.bg_light
-#Image:
-#                source: 'i/logo/new_logo/logo_dark_bg.jpg' if app.theme_cls.theme_style == 'Dark' else 'i/logo/new_logo/logo_white_bg.jpg'
-#                allow_stretch: True
-#                size_hint_y: .9 
-#                size_hint_x: 0.2
-
-            MDLabel:
-                text: 'Gneppa'
-                font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf/'
-                font_size: '22sp'
-                markup: True
-                theme_text_color: 'Custom'
-                text_color: 'white'
-
-
-            MDIconButton:
-                icon: 'bell-outline'
-                icon_size: dp(26)
-                pos_hint: {'center_y': .5}
-                theme_text_color: 'Custom'
-                text_color: 'white'
-
-
-            MDIconButton:
-                #id: settings_menu
-                icon: 'dots-vertical'
-                icon_size: dp(26)
-                pos_hint: {'center_y': .5}
-                theme_text_color: 'Custom'
-                text_color: 'white'
-
-                on_release: 
-                    root.menu_settings.open()
-                    root.manager.transition.direction = 'left'
-
 
     MDBottomNavigation:
         id: bottom_nav 
@@ -211,7 +104,7 @@
                     height: dp(60)
                     padding: (dp(10), dp(0), dp(0), dp(0))
                     md_bg_color: app.theme_cls.bg_light 
-                    #md_bg_color: app.theme_cls.primary_color 
+
                     Image:
                         source: 'i/logo/icon.png'
                         allow_stretch: True
@@ -222,25 +115,17 @@
                         font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf/'
                         font_size: '22sp'
                         markup: True
-#theme_text_color: 'Custom'
-#text_color: 'white'
-
 
                     MDIconButton:
                         icon: 'bell-outline'
                         icon_size: dp(26)
                         pos_hint: {'center_y': .5}
-#theme_text_color: 'Custom'
-#                        text_color: 'white'
-
 
                     MDIconButton:
                         id: settings_menu
                         icon: 'dots-vertical'
                         icon_size: dp(26)
                         pos_hint: {'center_y': .5}
-#                        theme_text_color: 'Custom'
-#                        text_color: 'white'
 
                         on_release: 
                             root.menu_settings.open()
@@ -269,26 +154,16 @@
             name: 'favorite_screen'
             text: 'Favorites'
             icon: 'star'
-#badge_icon: "numeric-10"
-            #on_tab_release: root.intro() 
             FavoriteScreen:
-
 
         MDBottomNavigationItem:
             name: 'search_screen'
             text: 'Search'
             icon: 'magnify'
-            #on_tab_release: root.demo(self.name)
             SearchScreen:
-
 
         MDBottomNavigationItem:
             name: 'settings'
             text: 'Settings'
             icon: 'cog'
             SettingsScreen:
-
-#on_tab_release:
-    #root.manager.current = 'settings_screen'
-
-
