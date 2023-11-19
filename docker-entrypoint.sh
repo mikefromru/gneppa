@@ -2,7 +2,6 @@
 
 # Collect static files
 echo "<<<<<<<<<< Collect static files >>>>>>>>>>"
-#python manage.py collectstatic --noinput
 python manage.py collectstatic --noinput --settings=project.settings.production
 
 # Apply database migrations
