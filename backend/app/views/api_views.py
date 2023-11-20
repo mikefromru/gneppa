@@ -39,7 +39,7 @@ class StandardResultsSetPagination(PageNumberPagination):
         })
 
 class LevelsAll(ListAPIView):
-    queryset = Level.objects.all().only('name', 'approved', 'image')
+    queryset = Level.objects.all().only('name', 'approved')
     serializer_class = LevelSerializer
 
 class VocabularyLevelDetail(APIView):

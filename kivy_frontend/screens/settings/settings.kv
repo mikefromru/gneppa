@@ -24,28 +24,19 @@
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            md_bg_color: app.theme_cls.primary_color 
-
-            MDIconButton:
-                icon: 'arrow-left'
-                theme_icon_color: 'Custom'
-                icon_color: 'white'
-                #icon_color: app.theme_cls.primary_dark
-                on_release: 
-                    root.manager.transition.direction = 'right'
-                    root.manager.current = 'home_screen'
+            md_bg_color: app.theme_cls.bg_light 
+            height: dp(60)
 
             MDLabel:
                 text: 'Settings'
                 font_size: '16sp'
-                theme_text_color: 'Custom'
-                text_color: 'white'
                 bold: True
+                halign: 'center'
 
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            padding: (dp(20),dp(0),dp(0),dp(0))
+            padding: (dp(25),dp(0),dp(0),dp(0))
 
             Icon:
                 icon: 'av-timer'
@@ -65,7 +56,7 @@
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            padding: (dp(20),dp(0),dp(0),dp(0))
+            padding: (dp(25),dp(0),dp(0),dp(0))
 
             Icon:
                 icon: 'help-circle-outline'
@@ -83,7 +74,7 @@
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            padding: (dp(20),dp(0),dp(0),dp(0))
+            padding: (dp(25),dp(0),dp(0),dp(0))
 
             Icon:
                 icon: 'progress-clock'
@@ -102,7 +93,7 @@
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            padding: (dp(20),dp(0),dp(30),dp(0))
+            padding: (dp(25),dp(0),dp(30),dp(0))
 
             Icon:
                 icon: 'bugle'
@@ -120,7 +111,7 @@
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            padding: (dp(20),dp(0),dp(30),dp(0))
+            padding: (dp(25),dp(0),dp(30),dp(0))
 
             Icon:
                 icon: 'brightness-3'
@@ -131,14 +122,14 @@
 
             MDSwitch:
                 id: set_bool
-                on_active: root.theme_change(self)
+                on_active: root.change_theme(self)
                 pos_hint: {'center_y': .5}
                 icon_active: 'check'
 
         MDBoxLayout:
             orientation: 'horizontal'
             adaptive_height: True
-            padding: (dp(20),dp(0),dp(0),dp(0))
+            padding: (dp(25),dp(0),dp(0),dp(0))
 
             Icon:
                 icon: 'contacts'
@@ -161,46 +152,15 @@
                 pos_hint: {'center_y': .5}
                 icon_size: dp(34)
                 on_release: root.get_messanger(self.name)
-         
+    
     MDBoxLayout:
         orientation: 'vertical'
         size_hint_y: None
-                  
-        MDBoxLayout:
-            size_hint_y: None
-            orientation: 'horizontal'
-            height: dp(60)
-            padding: (dp(0), dp(7), dp(0), dp(7))
 
-            MDBoxLayout:
-                size_hint_x: .4
-
-                Image:
-                    source: 'i/logo/dark_icon.jpg' if app.theme_cls.theme_style == 'Dark' else 'i/logo/white_icon.jpg'
-
-            MDBoxLayout:
-                orientation: 'vertical'
-                size_hint_x: .5
-
-                Label_:
-                    text: 'Gneppa'
-
-                Label_:
-                    id: app_version
-                    theme_text_color: 'Secondary'
-
-            MDBoxLayout:
-                orientation: 'vertical'
-                padding: (50, 0, 0, 0)
-
-                Label_:
-                    id: fromtoyear
-                    theme_text_color: 'Secondary'
-
-                MDTextButton:
-                    text: '[u]Privacy Policy[/u]'
-                    theme_text_color: 'Secondary'
-                    markup: True
-                    font_name: 'OpenSans'
-                    font_size: '14sp'
-                    on_release: root.get_privacy_police()
+        MDLabel:
+            theme_text_color: 'Secondary'
+            id: fromtoyear
+            halign: 'center'
+            font_name: 'OpenSans'
+            font_size: '12sp'
+           

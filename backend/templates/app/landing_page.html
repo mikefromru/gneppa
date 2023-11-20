@@ -1,70 +1,374 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="{% static 'css/app/app.css' %}">
-  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.x/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
-  <title>Gneppa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <title>Gneppa</title>
+    <!--
+
+Lava Landing Page
+
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/landing_page/assets/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/landing_page/assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/app/landing_page/assets/css/templatemo-lava.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/app/landing_page/assets/css/owl-carousel.css' %}">
+
 </head>
-<div class="navbar">
-  <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="{% static 'i/logo/icon.jpg' %}" width="50" height="50" alt="">
-        <span class="logo">Gneppa</span>
-      </a>
-      <span>+7 (995) 876-09-77</span>
-  </div>
-</div>
 
-<body class="">
-  <div class="container">
-    <div class="center-div align-center row d-flex justify-content-center">
+<body>
 
-      <div class="col">
-          <h3 class="fw-bold">Gneppa is a free app to learn English</h3>
-        <p class="fw-light">If you already understand the basics but want to improve your English, this app is for you.
-          With our free mobile app a few minutes a day, everyone can improve his spoken english by answering simple questions.
-        </p>
-        <div class="btn-group mb-3">
-
-        <a class='btn-button' href="{% url 'get_click' 'android' %}"  class="btn btn-default">
-             <img src="{% static 'i/soc_media/google-play-badge.png' %}" style='width: 170px; height: 50px' />
-           </a>
-
-        <a class="btn-button" href="{% url 'get_click' 'appgallery' %}" class="btn btn-default">
-             <img src="{% static 'i/soc_media/black_button_appgallery.png' %}" style='width: 170px; height: 50px;' />
-           </a>
-          </div>
-
-            <div class="mt-3 mb-3">
-              Follow us:
-              <a class="btn-button" href="https://vk.com/club215718655" class="btn btn-default">
-                <img src="{% static 'i/soc_media/vk50.png' %}"  class="icon_soc_media">
-              </a>
-              <a class="btn-button" href="https://twitter.com/GneppaApp" class="btn btn-default">
-                <img src="{% static 'i/soc_media/twitter50.png' %}"  class="icon_soc_media">
-              </a>
-            </div>
-
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-6 justify-content-end">
-          <img src="{% static 'i/phone/phone.png' %}" id="phone" class="rounded mx-auto d-block">
-        </div>
-
     </div>
+    <!-- ***** Preloader End ***** -->
 
-  </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            Gneppa
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
+                            <li class="scroll-to-section"><a href="#about" class="menu-item">About</a></li>
+                            <li class="scroll-to-section"><a href="#testimonials" class="menu-item">Feedback</a>
+                            </li>
+                            <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <h1>Gneppa is a free app to learn <em>ENGLISH</em></h1>
+                        <p>If you already understand the basics but want to improve your English, this app is for you.
+                            With our free mobile app a few minutes a day, everyone can improve his spoken english by
+                            answering simple questions.</p>
+                        <a href="#about" class="main-button-slider">KNOW US BETTER</a>
+                        <a href="#about" class="main-button-slider">DOWNLOAD</a>
+                        <!-- <a href="#about" class="main-button-slider">KNOW US BETTER</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <h2>01</h2>
+                            <!-- <img src="assets/images/features-icon-1.png" alt=""> -->
+                            <img src="{% static 'css/app/landing_page/assets/images/vocabulary.png' %}" alt="">
+                            <h4>Get Vocabulary</h4>
+                            <p>Track your progress and witness your vocabulary grow as you conquer new words and
+                                phrases.</p>
+                            <a href="#testimonials" class="main-button">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <h2>02</h2>
+                            <!-- <img src="assets/images/features-icon-2.png" alt=""> -->
+                            <!-- <img src="assets/images/speak.png" alt=""> -->
+                            <img src="{% static 'css/app/landing_page/assets/images/speak.png' %}" alt="">
+                            <!-- <img src="assets/images/tmp/RuStore.png" alt=""> -->
+                            <h4>Specking Skills</h4>
+                            <p> Develop fluent and confident spoken English skills through our comprehensive speaking
+                                program.</p>
+                            <a href="#testimonials" class="main-button">
+                                Discover More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <h2>03</h2>
+                            <!-- <img src="assets/images/features-icon-3.png" alt=""> -->
+                            <!-- <img src="assets/images/practice.png" alt=""> -->
+                            <img src="{% static 'css/app/landing_page/assets/images/practice.png' %}" alt="">
+                            <h4>Practice</h4>
+                            <p>Practice pronunciation and reinforce your understanding with audio recordings in
+                                contexts.</p>
+                            <a href="#testimonials" class="main-button">
+                                More Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <div class="left-image-decor"></div>
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="promotion">
+        <div class="container">
+            <div class="row">
+                <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'css/app/landing_page/assets/images/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix">
+                    <ul>
+                        <li data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                            <img src="{% static 'css/app/landing_page/assets/images/about-icon.png' %}" alt="">
+                            <div class="text">
+                                <h4>Download this app !</h4>
+                                <p>Download it from <a href="https://apps.rustore.ru/app/org.gneppa.gneppa">RuStore</a> or <a href="https://appgallery.huawei.com/app/C106945401">AppGallery</a>.
+                                Download Gneppa to your Android device from <a href="https://play.google.com/store/apps/details?id=org.gneppa.gneppa">Google Play</a>.</p>
+                            </div>
+                        </li>
+                        <li data-scroll-reveal="enter right move 30px over 0.6s after 0.5s">
+                            <img src="{% static 'css/app/landing_page/assets/images/about-icon.png' %}" alt="">
+                            <div class="text">
+                                <h4>How to use this app ?</h4>
+                                <p>Gneppa is the perfect app to instantly practice English.</p>
+                            </div>
+                        </li>
+                        <li data-scroll-reveal="enter right move 30px over 0.6s after 0.6s">
+                            <img src="{% static 'css/app/landing_page/assets/images/about-icon.png' %}" alt="">
+                            <div class="text">
+                                <h4>Who can use this app ?</h4>
+                                <p>Everyone who wants to improve their spoken English by answering simple questions</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <div class="right-image-decor"></div>
+
+    <!-- ***** Testimonials Starts ***** -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="center-heading">
+                        <h2>What They Think <em>About Us</em></h2>
+                        <p>Discover what our users have to say about our English learning mobile app! </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-12 col-sm-12 mobile-bottom-fix-big"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{% static 'css/app/landing_page/assets/images/man1.png' %}" alt="First Author"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>Jonathan Smart</h4>
+                                <p>“The English app is user-friendly and easy to navigate, making it convenient to access language learning materials.”</p>
+                                <span>Web Developer</span>
+                            </div>
+                        </div>
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{% static 'css/app/landing_page/assets/images/man2.png' %}" alt="Second Author"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>Martino Tino</h4>
+                                <p>“The app offers a variety of interactive exercises that help improve vocabulary, grammar, and pronunciation skills.”</p>
+                                <span>Web Analyst</span>
+                            </div>
+                        </div>
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{% static 'css/app/landing_page/assets/images/man3.png' %}" alt="Third Author"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>George Tasa</h4>
+                                <p>“The app could benefit from more frequent updates and new content to keep users motivated and eager to continue learning.”</p>
+                                <span>System Admin</span>
+                            </div>
+                        </div>
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{% static 'css/app/landing_page/assets/images/man4.png' %}" alt="Fourth Author"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>Sir James</h4>
+                                <p>"The app's progress tracking feature is effective in helping learners monitor their improvement and identify areas that need more practice."</p>
+                                <span>Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Testimonials Ends ***** -->
+
+
+    <!-- ***** Footer Start ***** -->
+    <footer id="contact-us">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <!-- ***** Contact Form Start ***** -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="contact-form">
+                            <form id="contact" action="" method="post">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <fieldset>
+                                            <input name="name" type="text" id="name" placeholder="Full Name" required=""
+                                                style="background-color: rgba(250,250,250,0.3);">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <fieldset>
+                                            <input name="email" type="text" id="email" placeholder="E-Mail Address"
+                                                required="" style="background-color: rgba(250,250,250,0.3);">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <textarea name="message" rows="6" id="message" placeholder="Your Message"
+                                                required="" style="background-color: rgba(250,250,250,0.3);"></textarea>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit" class="main-button">Send Message
+                                                Now</button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- ***** Contact Form End ***** -->
+                    <div class="right-content col-lg-6 col-md-12 col-sm-12">
+                        <h2>More About Gneppa</h2>
+                        <p>This is startup and a very useful tool for English learners, especially those who need additional practice learning grammar rules. 
+                            <br><br>If you want to contact us, you can send a message via the contact form or contact us via social networks.
+                        </p>
+                        <ul class="social">
+                            <!-- <li><a href="https://fb.com/templatemo"><i class="fa fa-facebook"></i></a></li> -->
+                            <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
+                            <li><a href="https://www.linkedin.com/in/mikefromru/"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://vk.com/gneppa/"><i class="fa fa-vk"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sub-footer">
+                        <p>Copyright &copy; 2022 Gneppa
+
+                            | Created by <a rel="nofollow" href="https://templatemo.com">MFR</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'css/app/landing_page/assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'css/app/landing_page/assets/js/popper.js' %}"></script>
+    <script src="{% static 'css/app/landing_page/assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'css/app/landing_page/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'css/app/landing_page/assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'css/app/landing_page/assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'css/app/landing_page/assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'css/app/landing_page/assets/js/imgfix.min.js' %}"></script>
+
+    <!-- Global Init -->
+    <script src="{% static 'css/app/landing_page/assets/js/custom.js' %}"></script>
+
 </body>
-
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 </html>

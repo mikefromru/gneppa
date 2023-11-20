@@ -1,0 +1,29 @@
+<AboutScreen>
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: (dp(10), dp(30), dp(10), dp(0))
+        
+        Image:
+            source: 'i/logo/icon.png'
+
+        MDLabel:
+            text: '[b][size=23sp]Gneppa is a free app to learn English[/size][/b]\n\nIf you already understand the basics but want to improve your English, this app is for you. With our free mobile app a few minutes a day, everyone can improve his spoken english by answering simple questions.'
+            halign: 'center'
+            markup: True
+
+        MDFillRoundFlatIconButton:
+            text: 'Go back'
+            icon: 'home'
+            font_name: 'fonts/OpenSans/OpenSans-SemiBold.ttf'
+            pos_hint: {"center_x": .5}
+            on_release: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'home_screen'
+
+        MDLabel:
+            text: 'Version ' + str(app.app_version)
+            font_name: 'OpenSans'
+            font_size: '12sp'
+            theme_text_color: 'Secondary'
+            halign: 'center'

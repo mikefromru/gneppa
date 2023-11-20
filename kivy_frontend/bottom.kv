@@ -1,0 +1,46 @@
+MDBottomNavigation:
+    id: bottom_nav 
+
+    MDBottomNavigationItem:
+        name: 'home'
+        text: 'Home'
+        icon: 'home'
+
+        RecycleView:
+            id: rv
+            viewclass: 'MyContainer'
+            effect_cls: 'ScrollEffect'
+            do_scroll_x: False
+            do_scroll_y: True
+            
+            
+            RecycleBoxLayout:
+                id: main_box
+                opacity: 0
+                orientation: 'vertical'
+                size_hint_y: None
+                spacing: dp(10)
+                default_size_hint: 1, None
+                height: self.minimum_height
+                default_size: None, dp(150)
+                padding: dp(15)
+
+    MDBottomNavigationItem:
+        name: 'favorites'
+        text: 'Favorites'
+        icon: 'star'
+        badge_icon: "numeric-10"
+
+    MDBottomNavigationItem:
+        name: 'search'
+        text: 'Search'
+        icon: 'magnify'
+
+    MDBottomNavigationItem:
+        name: 'settings'
+        text: 'Settings'
+        icon: 'cog'
+        on_tab_release:
+            root.manager.current = 'settings_screen'
+
+

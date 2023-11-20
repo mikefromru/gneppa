@@ -5,11 +5,15 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
 from kivy.metrics import dp
 from kivy.utils import rgba
+from kivy.clock import Clock
 import logging
 from kivy.network.urlrequest import UrlRequest
 from kivy.properties import ObjectProperty
 from settings import url
 from kivymd.uix.snackbar import Snackbar
+
+from kivymd.uix.spinner.spinner import MDSpinner
+from threading import Thread
 
 class VocabularyScreen(Screen):
 
@@ -18,6 +22,12 @@ class VocabularyScreen(Screen):
     def __init__(self, **kwargs):
         super(VocabularyScreen, self).__init__(**kwargs)
 
+    def on_progress(self, *args):
+        pass
+
+    def on_finish(self, *args):
+        pass
+
     # Handle request failures 
     def on_failure(self, req, failure):
         self.loading.text = 'Sorry, no vocabulary for this topic!\nWe are workning on it.'
@@ -25,16 +35,11 @@ class VocabularyScreen(Screen):
     #Handle request if there is no connection
     def on_error(self, req, error):
         self.loading.text = 'No connection'
-    
-    def on_finish(self, *args):
-        pass
-
-    def on_progress(self, *args):
-        pass
 
     def success(self, *args):
         result = self.request.result
         self.remove_widget(self.loading)
+        self.ids.sc.scroll_y = 1
 
         for x in result:
             items = MDBoxLayout(
@@ -83,7 +88,7 @@ class VocabularyScreen(Screen):
         )
         self.add_widget(self.loading)
 
-        logging.info(f'VocabularyScreen is running ... {self.level.get("id")}')
+        logging.debug(f'VocabularyScreen is running ... {self.level.get("id")}')
         url_ = f'{url}/api/app/vocabulary/{self.level.get("id")}/'
         self.request = UrlRequest(
             url_, 
@@ -95,14 +100,9 @@ class VocabularyScreen(Screen):
             timeout=5,
         )
 
-    def go_back(self, instance):
-        try:
-            store = JsonStore("tools/store.json")
-            self.manager.current = store.get('filebrowser')['screen']
-        except:
-            self.manager.current = 'home_screen'
-        self.manager.transition.direction = 'left'
-
-    def on_leave(self, *args):
+    def go_back(self):
         self.ids.box.clear_widgets()
         self.remove_widget(self.loading)
+
+        self.manager.current = 'home_screen'
+        self.manager.transition.direction = 'right'

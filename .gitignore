@@ -27,7 +27,7 @@ kivy_frontend/i/
 keystore/
 sounds/
 bin/
-kivy_frontend/settings.py
+kivy_frontend/settings_local.py
 
 main.ini
 # If you are using PyCharm # 

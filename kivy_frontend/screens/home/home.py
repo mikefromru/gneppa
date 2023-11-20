@@ -4,7 +4,9 @@ from kivy.properties import NumericProperty, ObjectProperty, ListProperty, Strin
 
 from kivy.metrics import dp
 from kivy.utils import rgba
-import logging
+
+from kivy.logger import Logger, LOG_LEVELS
+
 import ast
 
 from kivy.core.window import Window
@@ -16,6 +18,7 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
 from kivymd.uix.gridlayout import MDGridLayout
+from kivymd.uix.spinner.spinner import MDSpinner
 from kivymd.uix.list import (
     IRightBodyTouch, 
     OneLineAvatarIconListItem,
@@ -33,7 +36,10 @@ from screens.detail.detail import DetailScreen
 from screens.vocabulary.vocabulary import VocabularyScreen
 from screens.settings.settings import SettingsScreen
 from screens.favorite.favorite import FavoriteScreen
+from screens.about.about import AboutScreen
 from screens.search.search import SearchScreen
+
+from threading import Thread
 
 class RightContainer(IRightBodyTouch, MDBoxLayout):
 
@@ -51,6 +57,7 @@ class MyContainer(ButtonBehavior, MDBoxLayout):
     icon = StringProperty('home')
     id = NumericProperty()
     name = StringProperty()
+    description = StringProperty()
     star = StringProperty()
     progress_value = NumericProperty()
     progress_value_opacity = NumericProperty(0)
@@ -70,8 +77,8 @@ class MyContainer(ButtonBehavior, MDBoxLayout):
         MDApp.get_running_app().sm.current = 'vocabulary_screen'
 
     def on_release(self):
-        logging.info(f'{self.name=}')
-        DetailScreen.level = {'slug': self.slug, 'id': self.id, 'name': self.name}
+        Logger.debug('Aplication: go to detail_screen')
+        DetailScreen.level = {'slug': self.slug, 'id': self.id, 'name': self.name, 'icon': self.icon, 'description': self.description}
         MDApp.get_running_app().sm.transition.direction = 'left'
         MDApp.get_running_app().sm.current = 'detail_screen'
 
@@ -84,9 +91,9 @@ class HomeScreen(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.loading = MDLabel(text='Loading ...', halign='center')
+        self.loading = MDLabel(text='Loading ...', halign='center', theme_text_color='Hint')
         self.add_widget(self.loading)
-        dct_settings = {'Favorite': 'star', 'Search': 'magnify', 'Settings': 'cog', 'tmp': ''}
+        dct_settings = {'About it': 'information-variant', 'tmp': ''}
 
         menu_settings_items = [
                 {
@@ -105,22 +112,18 @@ class HomeScreen(Screen):
         )
 
     def menu_settings_callback(self, text_item):
-        if text_item == 'Favorite':
-            create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)
-            FavoriteScreen.levels = self.levels
-            MDApp.get_running_app().sm.current = 'favorite_screen'
-        elif text_item == 'Search':
-            create_screen('search.kv', 'search_screen', SearchScreen)
-            MDApp.get_running_app().sm.current = 'search_screen'
-        elif text_item == 'Settings':
-            create_screen('settings.kv', 'settings_screen', SettingsScreen)
-            MDApp.get_running_app().sm.current = 'settings_screen'
 
-        MDApp.get_running_app().sm.transition.direction = 'left'
+        if text_item == 'About it':
+            create_screen('about.kv', 'about_screen', AboutScreen)
+            MDApp.get_running_app().sm.transition.direction = 'left'
+            MDApp.get_running_app().sm.current = 'about_screen'
+
         self.menu_settings.dismiss()
      
     def add_levels_widgets(self, i):
-        ids_favorite = ast.literal_eval(self.config.get('Favorite', 'ids'))
+        ids_favorite = eval(self.config.get('Favorite', 'ids'))
+        ids_favorite = [x.get('id') for x in ids_favorite]
+        # self.ids.badge.badge_icon = f'numeric-{len(ids_favorite)}'
         ids_progress = ast.literal_eval(self.config.get('Progress', 'progress'))
 
         lst = [
@@ -128,8 +131,9 @@ class HomeScreen(Screen):
                 'opacity_': 0,
                 'id': x.get('id'),
                 'name': x.get('name'),
+                'description': x.get('description'),
                 'slug': x.get('slug'),
-                #'icon': x.get('icon'),
+                'icon': '' if x.get('icon') == 'circle' else x.get('icon'),
                 'star': 'star' if x.get('id') in ids_favorite else '',
                 'progress_value': ids_progress[x.get('id')] if x.get('id') in list(ids_progress) else 0.1,
                 'progress_value_opacity': 1 if x.get('id') in list(ids_progress) else 0,
@@ -138,13 +142,14 @@ class HomeScreen(Screen):
 
         self.ids.rv.data = lst
 
-    
+
     def on_enter(self):
         self.config = MDApp.get_running_app().config
-        Clock.schedule_once(self.add_levels_widgets, .1)
-        Clock.schedule_once(self.show_main_box, .2)
-        Clock.schedule_once(self.create_some_screens, .4)
+        Clock.schedule_once(self.add_levels_widgets, .1) #.1
+        Clock.schedule_once(self.show_main_box, .2) # .2
+        Clock.schedule_once(self.create_some_screens, .4) #.4
         DetailScreen.levels = self.levels 
+        FavoriteScreen.levels = self.levels 
 
     def get_stars_icon(self):
         id = self.level.get('id')
@@ -160,5 +165,7 @@ class HomeScreen(Screen):
         self.remove_widget(self.loading)
 
     def create_some_screens(self, i):
-        create_screen('settings.kv', 'settings_screen', SettingsScreen)
         create_screen('detail.kv', 'detail_screen', DetailScreen)
+        #create_screen('settings.kv', 'settings_screen', SettingsScreen)
+        #create_screen('search.kv', 'search_screen', SearchScreen)
+        #create_screen('favorite.kv', 'favorite_screen', FavoriteScreen)

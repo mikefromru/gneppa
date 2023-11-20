@@ -8,18 +8,12 @@ from django.core.exceptions import ValidationError
 
 class Level(models.Model):
 
-    def validate_image(filename):
-        filesize = filename.file.size
-        megabyte_limit = 0.015 # 5 kilobyte
-        if filesize > megabyte_limit*1024*1024:
-            raise ValidationError("Max file size is {5}KB")
-
     name = models.CharField(max_length=100, unique=True)
+    description = models.CharField(null=True, blank=True, max_length=87)
     created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
     slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)
-    image = models.ImageField(upload_to='i/image_levels/', validators=[validate_image], blank=True, null=True)
-    #icon = models.CharField(max_length=100, default='circle', editable=True, null=True, blank=True)
+    icon = models.CharField(max_length=100, default='circle', editable=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
