@@ -138,5 +138,9 @@ REST_FRAMEWORK = {
     )
 }
 
+
 SECURE_SSL_REDIRECT = False
 CORS_ORIGIN_ALLOW_ALL = True
+# my domain
+CSRF_TRUSTED_ORIGINS = ['https://gneppa.com']
+
